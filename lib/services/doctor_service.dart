@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../models/doctor.dart';
 import 'firestore_paths.dart';
 
@@ -7,7 +8,7 @@ class DoctorService {
   final FirebaseFirestore _firestore;
 
   DoctorService({FirebaseFirestore? firestore})
-      : _firestore = firestore ?? FirebaseFirestore.instance;
+    : _firestore = firestore ?? FirebaseFirestore.instance;
 
   CollectionReference<Map<String, dynamic>> get _doctorsRef =>
       _firestore.collection(FirestorePaths.doctors);

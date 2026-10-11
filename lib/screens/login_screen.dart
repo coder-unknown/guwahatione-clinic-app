@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../models/doctor.dart';
 import '../providers/auth_provider.dart';
 import '../providers/clinic_provider.dart';
@@ -11,7 +12,8 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStateMixin {
+class _LoginScreenState extends State<LoginScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
   final TextEditingController _ownerPinController = TextEditingController();
   final TextEditingController _doctorPinController = TextEditingController();
@@ -53,10 +55,15 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
             child: Card(
               elevation: 4,
               shadowColor: Colors.black.withValues(alpha: 0.1),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
               color: Colors.white,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 28.0, vertical: 36.0),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 28.0,
+                  vertical: 36.0,
+                ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -86,7 +93,10 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                     Text(
                       'Transparent OPD & Chamber Management',
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 13, color: Colors.grey.shade600),
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Colors.grey.shade600,
+                      ),
                     ),
                     const SizedBox(height: 24),
 
@@ -113,10 +123,22 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                         ),
                         labelColor: Colors.teal.shade800,
                         unselectedLabelColor: Colors.grey.shade600,
-                        labelStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                        labelStyle: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 13,
+                        ),
                         tabs: const [
-                          Tab(text: 'Doctor Chamber', icon: Icon(Icons.meeting_room_outlined, size: 18)),
-                          Tab(text: 'Reception Desk', icon: Icon(Icons.admin_panel_settings_outlined, size: 18)),
+                          Tab(
+                            text: 'Doctor Chamber',
+                            icon: Icon(Icons.meeting_room_outlined, size: 18),
+                          ),
+                          Tab(
+                            text: 'Reception Desk',
+                            icon: Icon(
+                              Icons.admin_panel_settings_outlined,
+                              size: 18,
+                            ),
+                          ),
                         ],
                         onTap: (_) {
                           setState(() {
@@ -144,7 +166,10 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                     if (_errorMessage != null) ...[
                       const SizedBox(height: 12),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 8,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.red.shade50,
                           borderRadius: BorderRadius.circular(8),
@@ -152,12 +177,19 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                         ),
                         child: Row(
                           children: [
-                            Icon(Icons.error_outline, size: 16, color: Colors.red.shade700),
+                            Icon(
+                              Icons.error_outline,
+                              size: 16,
+                              color: Colors.red.shade700,
+                            ),
                             const SizedBox(width: 8),
                             Expanded(
                               child: Text(
                                 _errorMessage!,
-                                style: TextStyle(fontSize: 12, color: Colors.red.shade700),
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.red.shade700,
+                                ),
                               ),
                             ),
                           ],
@@ -201,7 +233,10 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
             labelText: 'Select Doctor',
             prefixIcon: const Icon(Icons.person_pin_rounded),
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 14,
+              vertical: 12,
+            ),
           ),
           items: doctors.map((doc) {
             return DropdownMenuItem<Doctor>(
@@ -229,7 +264,10 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
             hintText: 'Enter 4-digit PIN (default: 1234)',
             prefixIcon: const Icon(Icons.lock_outline_rounded),
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 14,
+              vertical: 12,
+            ),
           ),
           onSubmitted: (_) => _handleDoctorLogin(),
         ),
@@ -238,14 +276,19 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
           style: FilledButton.styleFrom(
             backgroundColor: Colors.teal,
             padding: const EdgeInsets.symmetric(vertical: 14),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
           ),
           onPressed: _isLoading ? null : _handleDoctorLogin,
           child: _isLoading
               ? const SizedBox(
                   height: 18,
                   width: 18,
-                  child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
+                  child: CircularProgressIndicator(
+                    color: Colors.white,
+                    strokeWidth: 2,
+                  ),
                 )
               : const Text(
                   'Enter Chamber View',
@@ -262,7 +305,11 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
       children: [
         const Text(
           'Reception Desk & Admin Mode',
-          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Color(0xFF334155)),
+          style: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            color: Color(0xFF334155),
+          ),
         ),
         const SizedBox(height: 6),
         Text(
@@ -279,7 +326,10 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
             hintText: 'Enter PIN (default: 0000)',
             prefixIcon: const Icon(Icons.security_rounded),
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 14,
+              vertical: 12,
+            ),
           ),
           onSubmitted: (_) => _handleOwnerLogin(),
         ),
@@ -288,14 +338,19 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
           style: FilledButton.styleFrom(
             backgroundColor: const Color(0xFF0F172A),
             padding: const EdgeInsets.symmetric(vertical: 14),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
           ),
           onPressed: _isLoading ? null : _handleOwnerLogin,
           child: _isLoading
               ? const SizedBox(
                   height: 18,
                   width: 18,
-                  child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
+                  child: CircularProgressIndicator(
+                    color: Colors.white,
+                    strokeWidth: 2,
+                  ),
                 )
               : const Text(
                   'Access Reception Desk',
@@ -329,7 +384,9 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
     setState(() => _isLoading = false);
 
     if (!success) {
-      setState(() => _errorMessage = 'Incorrect PIN for ${_selectedDoctor!.name}.');
+      setState(
+        () => _errorMessage = 'Incorrect PIN for ${_selectedDoctor!.name}.',
+      );
     }
   }
 
@@ -352,7 +409,9 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
     setState(() => _isLoading = false);
 
     if (!success) {
-      setState(() => _errorMessage = 'Incorrect Reception PIN (default is 0000).');
+      setState(
+        () => _errorMessage = 'Incorrect Reception PIN (default is 0000).',
+      );
     }
   }
 }

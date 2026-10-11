@@ -11,10 +11,7 @@ import '../../utils/formatters.dart';
 class DashboardHeaderBar extends StatelessWidget {
   final ClinicProvider provider;
 
-  const DashboardHeaderBar({
-    super.key,
-    required this.provider,
-  });
+  const DashboardHeaderBar({super.key, required this.provider});
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +46,11 @@ class DashboardHeaderBar extends StatelessWidget {
                   color: Colors.teal.shade50,
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Icon(Icons.today_rounded, color: Colors.teal.shade700, size: 20),
+                child: Icon(
+                  Icons.today_rounded,
+                  color: Colors.teal.shade700,
+                  size: 20,
+                ),
               ),
               const SizedBox(width: 12),
               Column(
@@ -75,7 +76,10 @@ class DashboardHeaderBar extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 6,
+                ),
                 decoration: BoxDecoration(
                   color: Colors.green.shade50,
                   borderRadius: BorderRadius.circular(20),
@@ -84,7 +88,11 @@ class DashboardHeaderBar extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(Icons.currency_rupee, size: 14, color: Colors.green),
+                    const Icon(
+                      Icons.currency_rupee,
+                      size: 14,
+                      color: Colors.green,
+                    ),
                     const SizedBox(width: 2),
                     Text(
                       "₹${provider.dailyRevenue}",
@@ -97,7 +105,10 @@ class DashboardHeaderBar extends StatelessWidget {
                     const SizedBox(width: 4),
                     Text(
                       "collected today",
-                      style: TextStyle(fontSize: 11, color: Colors.green.shade700),
+                      style: TextStyle(
+                        fontSize: 11,
+                        color: Colors.green.shade700,
+                      ),
                     ),
                   ],
                 ),
@@ -121,7 +132,11 @@ class DashboardQuickActionChips extends StatelessWidget {
       runSpacing: 8,
       children: [
         ActionChip(
-          avatar: const Icon(Icons.add_circle_outline, size: 16, color: Colors.teal),
+          avatar: const Icon(
+            Icons.add_circle_outline,
+            size: 16,
+            color: Colors.teal,
+          ),
           label: const Text('Book Walk-In Patient'),
           onPressed: () {
             showDialog(
@@ -132,7 +147,11 @@ class DashboardQuickActionChips extends StatelessWidget {
           },
         ),
         ActionChip(
-          avatar: const Icon(Icons.format_list_numbered, size: 16, color: Color(0xFF2563EB)),
+          avatar: const Icon(
+            Icons.format_list_numbered,
+            size: 16,
+            color: Color(0xFF2563EB),
+          ),
           label: const Text('View Full Token Queue'),
           onPressed: () => Navigator.push(
             context,
@@ -140,7 +159,11 @@ class DashboardQuickActionChips extends StatelessWidget {
           ),
         ),
         ActionChip(
-          avatar: const Icon(Icons.people_alt_outlined, size: 16, color: Color(0xFF7C3AED)),
+          avatar: const Icon(
+            Icons.people_alt_outlined,
+            size: 16,
+            color: Color(0xFF7C3AED),
+          ),
           label: const Text('Doctor Chamber PINs'),
           onPressed: () => Navigator.push(
             context,
@@ -148,7 +171,11 @@ class DashboardQuickActionChips extends StatelessWidget {
           ),
         ),
         ActionChip(
-          avatar: const Icon(Icons.bar_chart_outlined, size: 16, color: Color(0xFF059669)),
+          avatar: const Icon(
+            Icons.bar_chart_outlined,
+            size: 16,
+            color: Color(0xFF059669),
+          ),
           label: const Text('Financial Audit & Payouts'),
           onPressed: () => Navigator.push(
             context,

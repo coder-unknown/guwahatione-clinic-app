@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../providers/auth_provider.dart';
 import '../providers/clinic_provider.dart';
 import 'add_appointment_dialog.dart';
@@ -59,7 +60,11 @@ class _OwnerShellState extends State<OwnerShell> {
                         color: Colors.teal.shade50,
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: Icon(Icons.local_hospital_rounded, color: Colors.teal.shade700, size: 24),
+                      child: Icon(
+                        Icons.local_hospital_rounded,
+                        color: Colors.teal.shade700,
+                        size: 24,
+                      ),
                     ),
                     if (MediaQuery.of(context).size.width >= 1100) ...[
                       const SizedBox(width: 10),
@@ -68,7 +73,10 @@ class _OwnerShellState extends State<OwnerShell> {
                         children: [
                           Text(
                             'GuwahatiOne',
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            ),
                           ),
                           Text(
                             'Reception Desk',
@@ -86,7 +94,10 @@ class _OwnerShellState extends State<OwnerShell> {
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 20.0),
                     child: IconButton(
-                      icon: const Icon(Icons.logout_rounded, color: Colors.redAccent),
+                      icon: const Icon(
+                        Icons.logout_rounded,
+                        color: Colors.redAccent,
+                      ),
                       tooltip: 'Logout of Reception',
                       onPressed: () => _confirmLogout(context),
                     ),
@@ -121,7 +132,11 @@ class _OwnerShellState extends State<OwnerShell> {
                 ),
               ],
             ),
-            const VerticalDivider(thickness: 1, width: 1, color: Color(0xFFE2E8F0)),
+            const VerticalDivider(
+              thickness: 1,
+              width: 1,
+              color: Color(0xFFE2E8F0),
+            ),
 
             // Main Content Area
             Expanded(
@@ -133,12 +148,18 @@ class _OwnerShellState extends State<OwnerShell> {
                     children: [
                       Text(
                         _getTitleForIndex(_selectedIndex),
-                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
                       ),
                       const Spacer(),
                       Consumer<ClinicProvider>(
                         builder: (_, clinic, _) => Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 6,
+                          ),
                           decoration: BoxDecoration(
                             color: Colors.green.shade50,
                             borderRadius: BorderRadius.circular(20),
@@ -146,7 +167,11 @@ class _OwnerShellState extends State<OwnerShell> {
                           ),
                           child: Row(
                             children: [
-                              const Icon(Icons.currency_rupee, size: 14, color: Colors.green),
+                              const Icon(
+                                Icons.currency_rupee,
+                                size: 14,
+                                color: Colors.green,
+                              ),
                               Text(
                                 "Today's Revenue: ₹${clinic.dailyRevenue}",
                                 style: TextStyle(
@@ -163,7 +188,10 @@ class _OwnerShellState extends State<OwnerShell> {
                       FilledButton.icon(
                         style: FilledButton.styleFrom(
                           backgroundColor: Colors.teal,
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 12,
+                          ),
                         ),
                         onPressed: () {
                           showDialog(
@@ -249,7 +277,9 @@ class _OwnerShellState extends State<OwnerShell> {
       context: context,
       builder: (ctx) => AlertDialog(
         title: const Text('Logout of Reception?'),
-        content: const Text('Are you sure you want to end this reception session?'),
+        content: const Text(
+          'Are you sure you want to end this reception session?',
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),

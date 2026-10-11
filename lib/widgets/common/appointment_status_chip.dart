@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../models/appointment.dart';
 
 /// Standardized status indicator chip for GuwahatiOne Clinic OS appointments.

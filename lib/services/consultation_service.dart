@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../models/appointment.dart';
 import '../models/consultation.dart';
 import '../models/prescription_item.dart';
@@ -9,7 +10,7 @@ class ConsultationService {
   final FirebaseFirestore _firestore;
 
   ConsultationService({FirebaseFirestore? firestore})
-      : _firestore = firestore ?? FirebaseFirestore.instance;
+    : _firestore = firestore ?? FirebaseFirestore.instance;
 
   CollectionReference<Map<String, dynamic>> get _consultationsRef =>
       _firestore.collection(FirestorePaths.consultations);

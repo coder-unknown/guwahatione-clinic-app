@@ -44,11 +44,16 @@ class ConsultationBottomDock extends StatelessWidget {
                 ? const SizedBox(
                     width: 16,
                     height: 16,
-                    child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      color: Colors.white,
+                    ),
                   )
                 : const Icon(Icons.check_circle_outline_rounded, size: 18),
             label: Text(
-              isSaving ? 'Saving & Ending...' : 'CONSULTATION END (Save & Sign)',
+              isSaving
+                  ? 'Saving & Ending...'
+                  : 'CONSULTATION END (Save & Sign)',
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
             ),
             onPressed: isSaving ? null : onCompleteAndSign,

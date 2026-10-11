@@ -74,7 +74,9 @@ abstract class AppointmentEngine {
     }
 
     // Sort descending by scheduledDate to pick the most recent visit
-    pastVisitsWithDoctor.sort((a, b) => b.scheduledDate.compareTo(a.scheduledDate));
+    pastVisitsWithDoctor.sort(
+      (a, b) => b.scheduledDate.compareTo(a.scheduledDate),
+    );
     final latestVisit = pastVisitsWithDoctor.first;
     final latestVisitDay = DateTime(
       latestVisit.scheduledDate.year,

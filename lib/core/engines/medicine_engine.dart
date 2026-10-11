@@ -54,6 +54,7 @@ class ReconciliationPartition {
   });
 
   bool get hasActive => activeMeds.isNotEmpty;
+
   bool get hasStopped => stoppedMeds.isNotEmpty;
 }
 
@@ -375,7 +376,8 @@ abstract class MedicineEngine {
 
   /// Segregates a consultation's prescription list into Active vs Discontinued items.
   static ReconciliationPartition segregatePrescriptions(
-      List<PrescriptionItem> items) {
+    List<PrescriptionItem> items,
+  ) {
     final List<PrescriptionItem> active = [];
     final List<PrescriptionItem> started = [];
     final List<PrescriptionItem> continued = [];

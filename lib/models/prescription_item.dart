@@ -34,13 +34,16 @@ class PrescriptionItem {
   final MedicationAction action;
   final String? medicineId; // Catalog reference if selected from master
   final String medicineName; // Trade name (e.g., 'Dolo 650' or entered name)
-  final String composition; // Generic chemical + strength (e.g., 'Paracetamol 650mg')
+  final String
+  composition; // Generic chemical + strength (e.g., 'Paracetamol 650mg')
   final String dosage; // e.g., '1 Tablet', '5 ml'
   final String frequency; // e.g., '1-0-1', 'OD (Once Daily)', 'BD'
   final String timing; // e.g., 'After Food', 'Before Food'
-  final int? durationDays; // Nullable: null for chronic drugs; integer for acute courses
+  final int?
+  durationDays; // Nullable: null for chronic drugs; integer for acute courses
   final String? stopReason; // Optional reason when action == STOP
-  final String? unlistedName; // Fallback field for outside medications not in catalog
+  final String?
+  unlistedName; // Fallback field for outside medications not in catalog
   final String? instructions; // e.g., 'Take with warm water'
 
   const PrescriptionItem({

@@ -68,16 +68,10 @@ class OrderedTest {
   final String testName; // e.g., 'Fasting Blood Sugar', 'Serum Creatinine'
   final String? instructions; // e.g., 'Overnight 10-12 hrs fasting'
 
-  const OrderedTest({
-    required this.testName,
-    this.instructions,
-  });
+  const OrderedTest({required this.testName, this.instructions});
 
   Map<String, dynamic> toJson() {
-    return {
-      'testName': testName,
-      'instructions': instructions,
-    };
+    return {'testName': testName, 'instructions': instructions};
   }
 
   factory OrderedTest.fromJson(Map<String, dynamic> json) {

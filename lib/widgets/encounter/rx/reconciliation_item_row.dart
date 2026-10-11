@@ -25,14 +25,16 @@ class ReconciliationItemRow extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: isStopped ? Colors.red.shade50.withValues(alpha: 0.4) : Colors.white,
+        color: isStopped
+            ? Colors.red.shade50.withValues(alpha: 0.4)
+            : Colors.white,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
           color: isContinued
               ? Colors.teal.shade300
               : isStopped
-                  ? Colors.red.shade300
-                  : const Color(0xFFCBD5E1),
+              ? Colors.red.shade300
+              : const Color(0xFFCBD5E1),
           width: 1.5,
         ),
       ),
@@ -55,10 +57,16 @@ class ReconciliationItemRow extends StatelessWidget {
                   "${item.composition} • ${item.dosage} • ${item.frequency} • ${item.timing}${item.durationDays != null ? ' (${item.durationDays}d)' : ' (Chronic)'}",
                   style: TextStyle(fontSize: 11, color: Colors.grey.shade600),
                 ),
-                if (isStopped && item.stopReason != null && item.stopReason!.isNotEmpty)
+                if (isStopped &&
+                    item.stopReason != null &&
+                    item.stopReason!.isNotEmpty)
                   Text(
                     "Stopped Reason: ${item.stopReason}",
-                    style: const TextStyle(fontSize: 11, fontStyle: FontStyle.italic, color: Colors.red),
+                    style: const TextStyle(
+                      fontSize: 11,
+                      fontStyle: FontStyle.italic,
+                      color: Colors.red,
+                    ),
                   ),
               ],
             ),
@@ -67,7 +75,10 @@ class ReconciliationItemRow extends StatelessWidget {
 
           // 1-Tap CONTINUE Button
           ChoiceChip(
-            label: const Text('CONTINUE', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold)),
+            label: const Text(
+              'CONTINUE',
+              style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
+            ),
             selected: isContinued,
             selectedColor: Colors.teal.shade100,
             onSelected: (val) {
@@ -78,7 +89,10 @@ class ReconciliationItemRow extends StatelessWidget {
 
           // 1-Tap STOP Button
           ChoiceChip(
-            label: const Text('STOP', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold)),
+            label: const Text(
+              'STOP',
+              style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
+            ),
             selected: isStopped,
             selectedColor: Colors.red.shade100,
             onSelected: (val) {
@@ -124,7 +138,11 @@ class NewPrescriptionRow extends StatelessWidget {
             ),
             child: Text(
               'START',
-              style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.green.shade800),
+              style: TextStyle(
+                fontSize: 10,
+                fontWeight: FontWeight.bold,
+                color: Colors.green.shade800,
+              ),
             ),
           ),
           const SizedBox(width: 10),
@@ -134,7 +152,10 @@ class NewPrescriptionRow extends StatelessWidget {
               children: [
                 Text(
                   item.effectiveName,
-                  style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Text(
                   "${item.composition} • ${item.dosage} • ${item.frequency} • ${item.timing} • ${item.durationDays != null ? '${item.durationDays} days' : 'Chronic'}",
@@ -143,13 +164,21 @@ class NewPrescriptionRow extends StatelessWidget {
                 if (item.instructions != null && item.instructions!.isNotEmpty)
                   Text(
                     "Note: ${item.instructions}",
-                    style: TextStyle(fontSize: 11, fontStyle: FontStyle.italic, color: Colors.grey.shade700),
+                    style: TextStyle(
+                      fontSize: 11,
+                      fontStyle: FontStyle.italic,
+                      color: Colors.grey.shade700,
+                    ),
                   ),
               ],
             ),
           ),
           IconButton(
-            icon: const Icon(Icons.delete_outline, size: 18, color: Colors.grey),
+            icon: const Icon(
+              Icons.delete_outline,
+              size: 18,
+              color: Colors.grey,
+            ),
             onPressed: () => onRemove(index),
           ),
         ],
@@ -188,17 +217,29 @@ class CollapsedMedicineSummary extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Icon(Icons.medication_rounded, size: 18, color: Colors.blue.shade700),
+            Icon(
+              Icons.medication_rounded,
+              size: 18,
+              color: Colors.blue.shade700,
+            ),
             const SizedBox(width: 10),
             Expanded(
               child: Text(
                 'Rx Schedule: $newCount new prescribed • $continuedCount continued • $stoppedCount stopped',
-                style: TextStyle(fontSize: 12, color: Colors.blue.shade900, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Colors.blue.shade900,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             Text(
               'Tap to expand',
-              style: TextStyle(fontSize: 11, color: Colors.grey.shade600, fontStyle: FontStyle.italic),
+              style: TextStyle(
+                fontSize: 11,
+                color: Colors.grey.shade600,
+                fontStyle: FontStyle.italic,
+              ),
             ),
           ],
         ),
@@ -236,11 +277,19 @@ class ReconciliationListCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Icon(Icons.published_with_changes_rounded, size: 18, color: Colors.blue),
+              const Icon(
+                Icons.published_with_changes_rounded,
+                size: 18,
+                color: Colors.blue,
+              ),
               const SizedBox(width: 8),
               const Text(
                 "Medication Reconciliation (From Prior Visits)",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Color(0xFF1E3A8A)),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 13,
+                  color: Color(0xFF1E3A8A),
+                ),
               ),
               const Spacer(),
               Text(
@@ -288,7 +337,11 @@ class NewPrescriptionsList extends StatelessWidget {
       children: [
         const Text(
           'Prescribed Medications (This Encounter)',
-          style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Color(0xFF334155)),
+          style: TextStyle(
+            fontSize: 13,
+            fontWeight: FontWeight.w600,
+            color: Color(0xFF334155),
+          ),
         ),
         const SizedBox(height: 6),
         if (items.isEmpty)
@@ -303,7 +356,11 @@ class NewPrescriptionsList extends StatelessWidget {
             child: Center(
               child: Text(
                 'No new medicines added yet. Type in search bar above to prescribe.',
-                style: TextStyle(fontSize: 12, color: Colors.grey.shade600, fontStyle: FontStyle.italic),
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Colors.grey.shade600,
+                  fontStyle: FontStyle.italic,
+                ),
               ),
             ),
           )
@@ -325,4 +382,3 @@ class NewPrescriptionsList extends StatelessWidget {
     );
   }
 }
-

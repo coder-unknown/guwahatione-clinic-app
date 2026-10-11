@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../models/doctor.dart';
 import '../models/user_role.dart';
 
@@ -15,11 +16,17 @@ class AuthProvider with ChangeNotifier {
   String _ownerPin = defaultOwnerPin;
 
   UserRole? get currentRole => _currentRole;
+
   Doctor? get currentDoctor => _currentDoctor;
+
   bool get isAuthenticated => _currentRole != null;
+
   bool get isOwner => _currentRole == UserRole.owner;
+
   bool get isDoctor => _currentRole == UserRole.doctor;
+
   bool get isInitialized => _isInitialized;
+
   String get ownerPin => _ownerPin;
 
   Future<void> initSession(List<Doctor> availableDoctors) async {
@@ -33,7 +40,9 @@ class AuthProvider with ChangeNotifier {
       _currentDoctor = null;
     } else if (savedRole == UserRole.doctor.name && savedDoctorId != null) {
       try {
-        _currentDoctor = availableDoctors.firstWhere((d) => d.id == savedDoctorId);
+        _currentDoctor = availableDoctors.firstWhere(
+          (d) => d.id == savedDoctorId,
+        );
         _currentRole = UserRole.doctor;
       } catch (_) {
         // Doctor not found or removed

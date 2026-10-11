@@ -6,10 +6,7 @@ import '../../models/consultation.dart';
 class PrintClinicalSnapshot extends StatelessWidget {
   final Consultation consultation;
 
-  const PrintClinicalSnapshot({
-    super.key,
-    required this.consultation,
-  });
+  const PrintClinicalSnapshot({super.key, required this.consultation});
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +15,15 @@ class PrintClinicalSnapshot extends StatelessWidget {
 
     final vitalsParts = <String>[];
     if (vitals != null) {
-      if (vitals.bpFormatted != null) vitalsParts.add("BP: ${vitals.bpFormatted}");
-      if (vitals.pulseRate != null) vitalsParts.add("Pulse: ${vitals.pulseRate} bpm");
+      if (vitals.bpFormatted != null)
+        vitalsParts.add("BP: ${vitals.bpFormatted}");
+      if (vitals.pulseRate != null)
+        vitalsParts.add("Pulse: ${vitals.pulseRate} bpm");
       if (vitals.spO2 != null) vitalsParts.add("SpO2: ${vitals.spO2}%");
-      if (vitals.temperature != null) vitalsParts.add("Temp: ${vitals.temperature}°F");
-      if (vitals.weightKg != null) vitalsParts.add("Weight: ${vitals.weightKg} kg");
+      if (vitals.temperature != null)
+        vitalsParts.add("Temp: ${vitals.temperature}°F");
+      if (vitals.weightKg != null)
+        vitalsParts.add("Weight: ${vitals.weightKg} kg");
     }
 
     final hasComplaints = c.chiefComplaints.isNotEmpty;
@@ -46,7 +47,10 @@ class PrintClinicalSnapshot extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 4),
               child: Text(
                 "Vitals: ${vitalsParts.join('  |  ')}",
-                style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w500),
+                style: const TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           if (hasComplaints)

@@ -118,7 +118,11 @@ class StagedMedicineForm extends StatelessWidget {
               Expanded(
                 child: Text(
                   'Staging: $displayName ($compName)',
-                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Color(0xFF065F46)),
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 13,
+                    color: Color(0xFF065F46),
+                  ),
                 ),
               ),
               IconButton(
@@ -157,14 +161,22 @@ class StagedMedicineForm extends StatelessWidget {
                     fillColor: Colors.white,
                     border: OutlineInputBorder(),
                   ),
-                  items: const [
-                    '1-0-0 (OD)',
-                    '1-0-1 (BD)',
-                    '0-0-1 (HS)',
-                    '1-1-1 (TDS)',
-                    'SOS (As Needed)',
-                    'Once Weekly',
-                  ].map((f) => DropdownMenuItem(value: f, child: Text(f, style: TextStyle(fontSize: 12)))).toList(),
+                  items:
+                      const [
+                            '1-0-0 (OD)',
+                            '1-0-1 (BD)',
+                            '0-0-1 (HS)',
+                            '1-1-1 (TDS)',
+                            'SOS (As Needed)',
+                            'Once Weekly',
+                          ]
+                          .map(
+                            (f) => DropdownMenuItem(
+                              value: f,
+                              child: Text(f, style: TextStyle(fontSize: 12)),
+                            ),
+                          )
+                          .toList(),
                   onChanged: onFrequencyChanged,
                 ),
               ),
@@ -180,13 +192,21 @@ class StagedMedicineForm extends StatelessWidget {
                     fillColor: Colors.white,
                     border: OutlineInputBorder(),
                   ),
-                  items: const [
-                    'After Food',
-                    'Before Food',
-                    'After Food (Morning)',
-                    'At Bedtime',
-                    'With Food',
-                  ].map((t) => DropdownMenuItem(value: t, child: Text(t, style: TextStyle(fontSize: 12)))).toList(),
+                  items:
+                      const [
+                            'After Food',
+                            'Before Food',
+                            'After Food (Morning)',
+                            'At Bedtime',
+                            'With Food',
+                          ]
+                          .map(
+                            (t) => DropdownMenuItem(
+                              value: t,
+                              child: Text(t, style: TextStyle(fontSize: 12)),
+                            ),
+                          )
+                          .toList(),
                   onChanged: onTimingChanged,
                 ),
               ),
@@ -213,7 +233,10 @@ class StagedMedicineForm extends StatelessWidget {
               ),
               const SizedBox(width: 10),
               FilterChip(
-                label: const Text('Continuous (Chronic)', style: TextStyle(fontSize: 11)),
+                label: const Text(
+                  'Continuous (Chronic)',
+                  style: TextStyle(fontSize: 11),
+                ),
                 selected: stagedIsChronic,
                 onSelected: onChronicChanged,
               ),
@@ -251,7 +274,10 @@ class StagedMedicineForm extends StatelessWidget {
                     foregroundColor: Colors.white,
                   ),
                   icon: const Icon(Icons.add, size: 16),
-                  label: const Text('Add to Prescription', style: TextStyle(fontWeight: FontWeight.bold)),
+                  label: const Text(
+                    'Add to Prescription',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   onPressed: onConfirmAddStaged,
                 ),
               ],

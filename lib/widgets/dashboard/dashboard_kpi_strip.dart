@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../core/engines/engines.dart';
-import '../common/metric_kpi_card.dart';
 import '../../providers/clinic_provider.dart';
 import '../../screens/appointment_list_screen.dart';
 import '../../screens/doctor_list_screen.dart';
 import '../../screens/statistics_screen.dart';
+import '../common/metric_kpi_card.dart';
 
 /// Responsive KPI Metrics Strip for Reception Dashboard.
 class DashboardKpiStrip extends StatelessWidget {
@@ -20,7 +20,9 @@ class DashboardKpiStrip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final metrics = RevenueEngine.calculateDailyMetrics(provider.todayAppointments);
+    final metrics = RevenueEngine.calculateDailyMetrics(
+      provider.todayAppointments,
+    );
 
     final cards = [
       DashboardKpiData(
@@ -28,7 +30,8 @@ class DashboardKpiStrip extends StatelessWidget {
         value: '${metrics.totalAppointments}',
         subtitle: '${metrics.completedCount} completed',
         icon: Icons.calendar_today_rounded,
-        color: const Color(0xFF2563EB), // Blue
+        color: const Color(0xFF2563EB),
+        // Blue
         bgColor: const Color(0xFFEFF6FF),
         onTap: () => Navigator.push(
           context,
@@ -40,7 +43,8 @@ class DashboardKpiStrip extends StatelessWidget {
         value: '₹${metrics.realizedRevenue}',
         subtitle: 'From completed visits',
         icon: Icons.account_balance_wallet_rounded,
-        color: const Color(0xFF059669), // Green
+        color: const Color(0xFF059669),
+        // Green
         bgColor: const Color(0xFFECFDF5),
         onTap: () => Navigator.push(
           context,
@@ -52,7 +56,8 @@ class DashboardKpiStrip extends StatelessWidget {
         value: '${metrics.pendingCount}',
         subtitle: 'Awaiting doctor consultation',
         icon: Icons.hourglass_top_rounded,
-        color: const Color(0xFFD97706), // Amber
+        color: const Color(0xFFD97706),
+        // Amber
         bgColor: const Color(0xFFFFFBEB),
         onTap: () => Navigator.push(
           context,
@@ -64,7 +69,8 @@ class DashboardKpiStrip extends StatelessWidget {
         value: '${provider.doctors.length}',
         subtitle: 'Active OPD chambers',
         icon: Icons.medical_services_rounded,
-        color: const Color(0xFF7C3AED), // Purple
+        color: const Color(0xFF7C3AED),
+        // Purple
         bgColor: const Color(0xFFF5F3FF),
         onTap: () => Navigator.push(
           context,
@@ -107,10 +113,7 @@ class DashboardKpiStrip extends StatelessWidget {
 class DashboardMetricCard extends StatelessWidget {
   final DashboardKpiData data;
 
-  const DashboardMetricCard({
-    super.key,
-    required this.data,
-  });
+  const DashboardMetricCard({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {

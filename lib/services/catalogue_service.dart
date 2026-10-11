@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../models/medicine.dart';
 import '../utils/default_medicines.dart';
 import 'firestore_paths.dart';
@@ -8,7 +9,7 @@ class CatalogueService {
   final FirebaseFirestore _firestore;
 
   CatalogueService({FirebaseFirestore? firestore})
-      : _firestore = firestore ?? FirebaseFirestore.instance;
+    : _firestore = firestore ?? FirebaseFirestore.instance;
 
   CollectionReference<Map<String, dynamic>> get _medicinesRef =>
       _firestore.collection(FirestorePaths.medicines);

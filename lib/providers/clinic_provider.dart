@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
 import '../core/engines/engines.dart';
-import '../models/patient.dart';
 import '../models/appointment.dart';
-import '../models/doctor.dart';
 import '../models/consultation.dart';
+import '../models/doctor.dart';
 import '../models/medicine.dart';
+import '../models/patient.dart';
+import '../models/patient_review_eligibility.dart';
 import '../models/prescription_item.dart';
 import '../models/user_role.dart';
-import '../models/patient_review_eligibility.dart';
 import '../services/firebase_service.dart';
 
 class ClinicProvider with ChangeNotifier {
@@ -30,9 +30,13 @@ class ClinicProvider with ChangeNotifier {
   bool _isLoading = false;
 
   List<Doctor> get doctors => _doctors;
+
   bool get hasLoadedDoctors => _hasLoadedDoctors;
+
   List<Appointment> get todayAppointments => _todayAppointments;
+
   List<Medicine> get medicines => _medicines;
+
   bool get isLoading => _isLoading;
 
   int get pendingCount => _todayAppointments
@@ -287,10 +291,7 @@ class ClinicProvider with ChangeNotifier {
     required DateTime date,
   }) async {
     try {
-      await _firebaseService.notifyReadyForNext(
-        doctorId: doctorId,
-        date: date,
-      );
+      await _firebaseService.notifyReadyForNext(doctorId: doctorId, date: date);
     } catch (e) {
       debugPrint('Error notifying ready for next: $e');
       rethrow;

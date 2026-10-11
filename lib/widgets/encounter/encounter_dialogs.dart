@@ -29,7 +29,10 @@ class EncounterDialogs {
           ),
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Cancel')),
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('Cancel'),
+          ),
           FilledButton(
             onPressed: () {
               final val = controller.text.trim();
@@ -81,7 +84,10 @@ class EncounterDialogs {
           ],
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Cancel')),
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('Cancel'),
+          ),
           FilledButton(
             onPressed: () {
               final name = nameCtrl.text.trim();
@@ -126,12 +132,23 @@ class EncounterDialogs {
             const SizedBox(height: 12),
             Wrap(
               spacing: 6,
-              children: ['Condition Resolved', 'Adverse Effect / Intolerance', 'Ineffective', 'Switched']
-                  .map((chip) => ActionChip(
-                        label: Text(chip, style: const TextStyle(fontSize: 11)),
-                        onPressed: () => reasonCtrl.text = chip,
-                      ))
-                  .toList(),
+              children:
+                  [
+                        'Condition Resolved',
+                        'Adverse Effect / Intolerance',
+                        'Ineffective',
+                        'Switched',
+                      ]
+                      .map(
+                        (chip) => ActionChip(
+                          label: Text(
+                            chip,
+                            style: const TextStyle(fontSize: 11),
+                          ),
+                          onPressed: () => reasonCtrl.text = chip,
+                        ),
+                      )
+                      .toList(),
             ),
             const SizedBox(height: 12),
             TextField(
@@ -151,7 +168,9 @@ class EncounterDialogs {
           FilledButton(
             style: FilledButton.styleFrom(backgroundColor: Colors.redAccent),
             onPressed: () {
-              final reason = reasonCtrl.text.trim().isEmpty ? 'Discontinued by Doctor' : reasonCtrl.text.trim();
+              final reason = reasonCtrl.text.trim().isEmpty
+                  ? 'Discontinued by Doctor'
+                  : reasonCtrl.text.trim();
               onConfirmStop(reason);
               Navigator.pop(ctx);
             },
@@ -204,7 +223,10 @@ class EncounterDialogs {
           ],
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Cancel')),
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('Cancel'),
+          ),
           FilledButton(
             onPressed: () {
               final val = medCtrl.text.trim();
@@ -216,9 +238,12 @@ class EncounterDialogs {
                     medicineName: val,
                     composition: val,
                     dosage: '1 Dose',
-                    frequency: doseCtrl.text.trim().isNotEmpty ? doseCtrl.text.trim() : 'Once daily',
+                    frequency: doseCtrl.text.trim().isNotEmpty
+                        ? doseCtrl.text.trim()
+                        : 'Once daily',
                     timing: 'After Food',
-                    durationDays: null, // baseline chronic
+                    durationDays: null,
+                    // baseline chronic
                     unlistedName: val,
                   ),
                 );
@@ -273,17 +298,27 @@ class EncounterDialogs {
                   const SizedBox(width: 8),
                   Text(
                     "Longitudinal Record (${history.length} visits)",
-                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const Spacer(),
-                  IconButton(icon: const Icon(Icons.close), onPressed: () => Navigator.pop(ctx)),
+                  IconButton(
+                    icon: const Icon(Icons.close),
+                    onPressed: () => Navigator.pop(ctx),
+                  ),
                 ],
               ),
             ),
             const Divider(height: 1),
             Expanded(
               child: history.isEmpty
-                  ? const Center(child: Text('No previous consultation records for this patient.'))
+                  ? const Center(
+                      child: Text(
+                        'No previous consultation records for this patient.',
+                      ),
+                    )
                   : ListView.separated(
                       controller: scrollCtrl,
                       padding: const EdgeInsets.all(16),
@@ -302,35 +337,51 @@ class EncounterDialogs {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     AppFormatters.dateTime(record.createdAt),
-                                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13,
+                                    ),
                                   ),
                                   Text(
                                     "Dr. ${record.doctorName}",
-                                    style: TextStyle(fontSize: 12, color: Colors.teal.shade800),
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.teal.shade800,
+                                    ),
                                   ),
                                 ],
                               ),
                               if (record.vitals?.bpFormatted != null)
                                 Padding(
                                   padding: const EdgeInsets.only(top: 4),
-                                  child: Text("BP: ${record.vitals!.bpFormatted}", style: const TextStyle(fontSize: 12)),
+                                  child: Text(
+                                    "BP: ${record.vitals!.bpFormatted}",
+                                    style: const TextStyle(fontSize: 12),
+                                  ),
                                 ),
                               if (record.provisionalDiagnosis.isNotEmpty)
                                 Padding(
                                   padding: const EdgeInsets.only(top: 4),
                                   child: Text(
                                     "Diagnosis: ${record.provisionalDiagnosis.join(', ')}",
-                                    style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                                    style: const TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
                                 ),
                               const SizedBox(height: 6),
                               Text(
                                 "Rx: ${record.activePrescriptions.map((p) => p.effectiveName).join(', ')}",
-                                style: TextStyle(fontSize: 12, color: Colors.grey.shade700),
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.grey.shade700,
+                                ),
                               ),
                             ],
                           ),

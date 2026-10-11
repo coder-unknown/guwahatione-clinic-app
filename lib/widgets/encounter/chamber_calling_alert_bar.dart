@@ -26,12 +26,20 @@ class ChamberCallingAlertBar extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const Icon(Icons.notifications_active_rounded, color: Color(0xFFB45309), size: 22),
+          const Icon(
+            Icons.notifications_active_rounded,
+            color: Color(0xFFB45309),
+            size: 22,
+          ),
           const SizedBox(width: 10),
           Expanded(
             child: Text(
               "Token #${queueNumber ?? ''} (${patientName ?? 'Next Patient'}) was called to chamber by Reception.",
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Color(0xFF92400E)),
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 13,
+                color: Color(0xFF92400E),
+              ),
             ),
           ),
           FilledButton.tonal(
@@ -42,7 +50,10 @@ class ChamberCallingAlertBar extends StatelessWidget {
               visualDensity: VisualDensity.compact,
             ),
             onPressed: onSwitch,
-            child: const Text('Switch Now', style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+            child: const Text(
+              'Switch Now',
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+            ),
           ),
           const SizedBox(width: 6),
           IconButton(

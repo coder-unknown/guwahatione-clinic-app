@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../models/appointment.dart';
@@ -55,37 +56,38 @@ class _DoctorChamberScreenState extends State<DoctorChamberScreen> {
     _chamberSessionSub = _firebaseService
         .streamChamberSession(widget.doctor.id, _selectedDate)
         .listen((snapshot) {
-      if (!snapshot.exists || !mounted) return;
-      final data = snapshot.data();
-      if (data == null) return;
+          if (!snapshot.exists || !mounted) return;
+          final data = snapshot.data();
+          if (data == null) return;
 
-      final status = (data['status'] as String?) ?? 'idle';
-      final activeApptId = data['activeAppointmentId'] as String?;
-      final activeQNum = (data['activeQueueNumber'] as num?)?.toInt();
-      final activePName = data['patientName'] as String?;
-      final lastQNum = (data['lastCompletedQueueNumber'] as num?)?.toInt();
-      final lastPName = data['lastCompletedPatientName'] as String?;
+          final status = (data['status'] as String?) ?? 'idle';
+          final activeApptId = data['activeAppointmentId'] as String?;
+          final activeQNum = (data['activeQueueNumber'] as num?)?.toInt();
+          final activePName = data['patientName'] as String?;
+          final lastQNum = (data['lastCompletedQueueNumber'] as num?)?.toInt();
+          final lastPName = data['lastCompletedPatientName'] as String?;
 
-      setState(() {
-        _chamberStatus = status;
-        _activeCallingApptId = (status == 'calling' || status == 'in_consultation')
-            ? activeApptId
-            : null;
-        _activeQueueNumber = activeQNum;
-        _activePatientName = activePName;
-        _lastCompletedQueueNumber = lastQNum;
-        _lastCompletedPatientName = lastPName;
-      });
+          setState(() {
+            _chamberStatus = status;
+            _activeCallingApptId =
+                (status == 'calling' || status == 'in_consultation')
+                ? activeApptId
+                : null;
+            _activeQueueNumber = activeQNum;
+            _activePatientName = activePName;
+            _lastCompletedQueueNumber = lastQNum;
+            _lastCompletedPatientName = lastPName;
+          });
 
-      if (status == 'calling' &&
-          activeApptId != null &&
-          activeApptId.isNotEmpty &&
-          activeApptId != _lastHandledCallingAppointmentId &&
-          !_isAutoNavigating) {
-        _lastHandledCallingAppointmentId = activeApptId;
-        _autoOpenConsultationForId(activeApptId);
-      }
-    });
+          if (status == 'calling' &&
+              activeApptId != null &&
+              activeApptId.isNotEmpty &&
+              activeApptId != _lastHandledCallingAppointmentId &&
+              !_isAutoNavigating) {
+            _lastHandledCallingAppointmentId = activeApptId;
+            _autoOpenConsultationForId(activeApptId);
+          }
+        });
   }
 
   Future<void> _handleNextPatient() async {
@@ -113,7 +115,10 @@ class _DoctorChamberScreenState extends State<DoctorChamberScreen> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error signaling reception: $e'), backgroundColor: Colors.red),
+          SnackBar(
+            content: Text('Error signaling reception: $e'),
+            backgroundColor: Colors.red,
+          ),
         );
       }
     } finally {
@@ -124,10 +129,14 @@ class _DoctorChamberScreenState extends State<DoctorChamberScreen> {
   Future<void> _autoOpenConsultationForId(String appointmentId) async {
     _isAutoNavigating = true;
     try {
-      Appointment? targetAppt = _latestAppointments.where((a) => a.id == appointmentId).firstOrNull;
+      Appointment? targetAppt = _latestAppointments
+          .where((a) => a.id == appointmentId)
+          .firstOrNull;
       if (targetAppt == null) {
         await Future.delayed(const Duration(milliseconds: 400));
-        targetAppt = _latestAppointments.where((a) => a.id == appointmentId).firstOrNull;
+        targetAppt = _latestAppointments
+            .where((a) => a.id == appointmentId)
+            .firstOrNull;
       }
 
       if (targetAppt != null && mounted) {
@@ -135,7 +144,11 @@ class _DoctorChamberScreenState extends State<DoctorChamberScreen> {
           SnackBar(
             content: Row(
               children: [
-                const Icon(Icons.record_voice_over_rounded, color: Colors.white, size: 20),
+                const Icon(
+                  Icons.record_voice_over_rounded,
+                  color: Colors.white,
+                  size: 20,
+                ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Text(
@@ -188,7 +201,9 @@ class _DoctorChamberScreenState extends State<DoctorChamberScreen> {
         ),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator(strokeWidth: 2.5));
+            return const Center(
+              child: CircularProgressIndicator(strokeWidth: 2.5),
+            );
           }
           if (snapshot.hasError) {
             return Center(
@@ -207,7 +222,10 @@ class _DoctorChamberScreenState extends State<DoctorChamberScreen> {
             onRefresh: () async => setState(() {}),
             child: SingleChildScrollView(
               physics: const AlwaysScrollableScrollPhysics(),
-              padding: EdgeInsets.symmetric(horizontal: isDesktop ? 32 : 16, vertical: 20),
+              padding: EdgeInsets.symmetric(
+                horizontal: isDesktop ? 32 : 16,
+                vertical: 20,
+              ),
               child: Center(
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 1100),
@@ -222,7 +240,13 @@ class _DoctorChamberScreenState extends State<DoctorChamberScreen> {
                         },
                         onTodayPressed: () {
                           final now = DateTime.now();
-                          setState(() => _selectedDate = DateTime(now.year, now.month, now.day));
+                          setState(
+                            () => _selectedDate = DateTime(
+                              now.year,
+                              now.month,
+                              now.day,
+                            ),
+                          );
                           _listenToChamberSession();
                         },
                       ),
@@ -236,7 +260,9 @@ class _DoctorChamberScreenState extends State<DoctorChamberScreen> {
                         isBusy: _isBusySignaling,
                         onNextPatient: _handleNextPatient,
                         onOpenActivePatient: _activeCallingApptId != null
-                            ? () => _autoOpenConsultationForId(_activeCallingApptId!)
+                            ? () => _autoOpenConsultationForId(
+                                _activeCallingApptId!,
+                              )
                             : null,
                       ),
                       const SizedBox(height: 16),
@@ -254,7 +280,8 @@ class _DoctorChamberScreenState extends State<DoctorChamberScreen> {
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: appointments.length,
-                          separatorBuilder: (ctx, i) => const SizedBox(height: 8),
+                          separatorBuilder: (ctx, i) =>
+                              const SizedBox(height: 8),
                           itemBuilder: (ctx, index) {
                             final appt = appointments[index];
                             return ChamberTokenCard(

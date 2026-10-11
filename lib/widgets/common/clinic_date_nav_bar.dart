@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../utils/formatters.dart';
 
 /// Reusable Date Navigation Bar with Previous / Next day arrows and calendar picker.
@@ -62,7 +63,11 @@ class ClinicDateNavBar extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               child: Row(
                 children: [
-                  const Icon(Icons.calendar_today_outlined, size: 15, color: Color(0xFF0F766E)),
+                  const Icon(
+                    Icons.calendar_today_outlined,
+                    size: 15,
+                    color: Color(0xFF0F766E),
+                  ),
                   const SizedBox(width: 6),
                   Text(
                     _isToday
@@ -99,7 +104,10 @@ class ClinicDateNavBar extends StatelessWidget {
                   onDateChanged(DateTime(now.year, now.month, now.day));
                 }
               },
-              child: const Text('Today', style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+              child: const Text(
+                'Today',
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+              ),
             ),
           ],
         ],

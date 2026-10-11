@@ -43,10 +43,7 @@ class BookingEligibilityBanner extends StatelessWidget {
           Expanded(
             child: Text(
               historyInfo!,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 13,
-              ),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
             ),
           ),
         ],

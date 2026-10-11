@@ -73,8 +73,13 @@ class RxReconciliationSection extends StatelessWidget {
           ),
           const SizedBox(width: 8),
           TextButton.icon(
-            icon: Icon(form.isMedicineExpanded ? Icons.unfold_less : Icons.unfold_more, size: 18),
-            label: Text(form.isMedicineExpanded ? 'Close Medicine' : 'Open Medicine'),
+            icon: Icon(
+              form.isMedicineExpanded ? Icons.unfold_less : Icons.unfold_more,
+              size: 18,
+            ),
+            label: Text(
+              form.isMedicineExpanded ? 'Close Medicine' : 'Open Medicine',
+            ),
             onPressed: () {
               form.isMedicineExpanded = !form.isMedicineExpanded;
               onUpdate();
@@ -90,10 +95,12 @@ class RxReconciliationSection extends StatelessWidget {
                   ReconciliationListCard(
                     items: form.reconciliationItems,
                     onContinue: (idx) {
-                      form.reconciliationItems[idx] = form.reconciliationItems[idx].copyWith(
-                        action: MedicationAction.continueAction,
-                        stopReason: null,
-                      );
+                      form.reconciliationItems[idx] = form
+                          .reconciliationItems[idx]
+                          .copyWith(
+                            action: MedicationAction.continueAction,
+                            stopReason: null,
+                          );
                       onUpdate();
                     },
                     onPromptStop: onPromptStopReason,
@@ -103,7 +110,11 @@ class RxReconciliationSection extends StatelessWidget {
 
                 const Text(
                   'Add Medicine (Search by Brand or Composition)',
-                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Color(0xFF0F172A)),
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF0F172A),
+                  ),
                 ),
                 const SizedBox(height: 6),
                 TextField(
@@ -124,7 +135,10 @@ class RxReconciliationSection extends StatelessWidget {
                           )
                         : null,
                     isDense: true,
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 10,
+                    ),
                     border: const OutlineInputBorder(),
                   ),
                   onChanged: (val) {
@@ -134,7 +148,8 @@ class RxReconciliationSection extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
 
-                if (form.isSearchActive && form.medSearchController.text.trim().isNotEmpty) ...[
+                if (form.isSearchActive &&
+                    form.medSearchController.text.trim().isNotEmpty) ...[
                   RxSearchResultsView(
                     results: searchResults,
                     query: form.medSearchController.text,
@@ -192,8 +207,12 @@ class RxReconciliationSection extends StatelessWidget {
               ],
             )
           : CollapsedMedicineSummary(
-              continuedCount: form.reconciliationItems.where((i) => i.action == MedicationAction.continueAction).length,
-              stoppedCount: form.reconciliationItems.where((i) => i.action == MedicationAction.stop).length,
+              continuedCount: form.reconciliationItems
+                  .where((i) => i.action == MedicationAction.continueAction)
+                  .length,
+              stoppedCount: form.reconciliationItems
+                  .where((i) => i.action == MedicationAction.stop)
+                  .length,
               newCount: form.newPrescriptions.length,
               onTap: () {
                 form.isMedicineExpanded = !form.isMedicineExpanded;

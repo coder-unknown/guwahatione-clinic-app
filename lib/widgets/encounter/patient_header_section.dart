@@ -34,15 +34,15 @@ class PatientHeaderSection extends StatelessWidget {
     required this.onAddAllergy,
     required this.onPriorMedsPressed,
     required VoidCallback onUpdate,
-  })  : patientName = appointment.patientName,
-        patientAge = form.patientAge,
-        patientGender = form.patientGender,
-        patientPhone = appointment.patientPhone,
-        allergies = form.allergies,
-        onRemoveAllergy = ((allergy) {
-          form.removeAllergy(allergy);
-          onUpdate();
-        });
+  }) : patientName = appointment.patientName,
+       patientAge = form.patientAge,
+       patientGender = form.patientGender,
+       patientPhone = appointment.patientPhone,
+       allergies = form.allergies,
+       onRemoveAllergy = ((allergy) {
+         form.removeAllergy(allergy);
+         onUpdate();
+       });
 
   @override
   Widget build(BuildContext context) {
@@ -96,20 +96,32 @@ class PatientHeaderSection extends StatelessWidget {
                       ),
                       Text(
                         "Age: ${patientAge > 0 ? patientAge : '—'} yrs • Sex: $patientGender",
-                        style: TextStyle(fontSize: 13, color: Colors.grey.shade700),
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Colors.grey.shade700,
+                        ),
                       ),
                       Text(
                         "Phone: $patientPhone",
-                        style: TextStyle(fontSize: 13, color: Colors.grey.shade700),
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Colors.grey.shade700,
+                        ),
                       ),
                     ],
                   ),
                 ),
                 OutlinedButton.icon(
                   icon: const Icon(Icons.medication_outlined, size: 16),
-                  label: const Text('Prior Meds', style: TextStyle(fontSize: 12)),
+                  label: const Text(
+                    'Prior Meds',
+                    style: TextStyle(fontSize: 12),
+                  ),
                   style: OutlinedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 4,
+                    ),
                   ),
                   onPressed: onPriorMedsPressed,
                 ),
@@ -123,10 +135,14 @@ class PatientHeaderSection extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
             decoration: BoxDecoration(
               color: hasAllergies ? Colors.red.shade50 : Colors.amber.shade50,
-              borderRadius: const BorderRadius.vertical(bottom: Radius.circular(11)),
+              borderRadius: const BorderRadius.vertical(
+                bottom: Radius.circular(11),
+              ),
               border: Border(
                 top: BorderSide(
-                  color: hasAllergies ? Colors.red.shade200 : Colors.amber.shade200,
+                  color: hasAllergies
+                      ? Colors.red.shade200
+                      : Colors.amber.shade200,
                 ),
               ),
             ),
@@ -134,8 +150,12 @@ class PatientHeaderSection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Icon(
-                  hasAllergies ? Icons.warning_amber_rounded : Icons.info_outline,
-                  color: hasAllergies ? Colors.red.shade700 : Colors.amber.shade800,
+                  hasAllergies
+                      ? Icons.warning_amber_rounded
+                      : Icons.info_outline,
+                  color: hasAllergies
+                      ? Colors.red.shade700
+                      : Colors.amber.shade800,
                   size: 20,
                 ),
                 const SizedBox(width: 8),
@@ -145,7 +165,9 @@ class PatientHeaderSection extends StatelessWidget {
                     fontSize: 12,
                     fontWeight: FontWeight.w800,
                     letterSpacing: 0.5,
-                    color: hasAllergies ? Colors.red.shade800 : Colors.amber.shade900,
+                    color: hasAllergies
+                        ? Colors.red.shade800
+                        : Colors.amber.shade900,
                   ),
                 ),
                 Expanded(
@@ -156,7 +178,9 @@ class PatientHeaderSection extends StatelessWidget {
                           children: allergies.map((allergy) {
                             return Chip(
                               backgroundColor: Colors.white,
-                              labelPadding: const EdgeInsets.symmetric(horizontal: 4),
+                              labelPadding: const EdgeInsets.symmetric(
+                                horizontal: 4,
+                              ),
                               visualDensity: VisualDensity.compact,
                               side: BorderSide(color: Colors.red.shade300),
                               label: Text(
@@ -184,7 +208,9 @@ class PatientHeaderSection extends StatelessWidget {
                 IconButton(
                   icon: const Icon(Icons.add_circle_outline, size: 18),
                   tooltip: 'Add Known Drug/Substance Allergy',
-                  color: hasAllergies ? Colors.red.shade700 : Colors.amber.shade900,
+                  color: hasAllergies
+                      ? Colors.red.shade700
+                      : Colors.amber.shade900,
                   onPressed: onAddAllergy,
                 ),
               ],

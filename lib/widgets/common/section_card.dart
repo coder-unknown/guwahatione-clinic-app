@@ -102,11 +102,7 @@ class SectionCard extends StatelessWidget {
           ),
 
           // Content Area
-          if (showContent)
-            Padding(
-              padding: contentPadding,
-              child: child,
-            ),
+          if (showContent) Padding(padding: contentPadding, child: child),
         ],
       ),
     );

@@ -33,8 +33,13 @@ class VitalsAndExamSection extends StatelessWidget {
         onUpdate();
       },
       trailing: TextButton.icon(
-        icon: Icon(form.isFindingsExpanded ? Icons.unfold_less : Icons.edit_note, size: 18),
-        label: Text(form.isFindingsExpanded ? 'Close Findings' : 'Add / Edit Findings'),
+        icon: Icon(
+          form.isFindingsExpanded ? Icons.unfold_less : Icons.edit_note,
+          size: 18,
+        ),
+        label: Text(
+          form.isFindingsExpanded ? 'Close Findings' : 'Add / Edit Findings',
+        ),
         onPressed: () {
           form.isFindingsExpanded = !form.isFindingsExpanded;
           onUpdate();
@@ -51,7 +56,11 @@ class VitalsAndExamSection extends StatelessWidget {
                 // Chief Complaints
                 const Text(
                   'Chief Complaints / Symptoms',
-                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Color(0xFF334155)),
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF334155),
+                  ),
                 ),
                 const SizedBox(height: 6),
                 Row(
@@ -60,9 +69,13 @@ class VitalsAndExamSection extends StatelessWidget {
                       child: TextField(
                         controller: form.complaintInputController,
                         decoration: const InputDecoration(
-                          hintText: 'e.g., Fever x 3 days, dry cough, headache...',
+                          hintText:
+                              'e.g., Fever x 3 days, dry cough, headache...',
                           isDense: true,
-                          contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                          contentPadding: EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 10,
+                          ),
                           border: OutlineInputBorder(),
                         ),
                         onSubmitted: (_) {
@@ -105,7 +118,11 @@ class VitalsAndExamSection extends StatelessWidget {
                 // Provisional Diagnosis
                 const Text(
                   'Provisional / Working Diagnosis',
-                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Color(0xFF334155)),
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF334155),
+                  ),
                 ),
                 const SizedBox(height: 6),
                 Row(
@@ -116,7 +133,10 @@ class VitalsAndExamSection extends StatelessWidget {
                         decoration: const InputDecoration(
                           hintText: 'e.g., Acute Viral Bronchitis, Essential Hypertension...',
                           isDense: true,
-                          contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                          contentPadding: EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 10,
+                          ),
                           border: OutlineInputBorder(),
                         ),
                         onSubmitted: (_) {
@@ -143,7 +163,13 @@ class VitalsAndExamSection extends StatelessWidget {
                     runSpacing: 6,
                     children: form.provisionalDiagnoses.map((d) {
                       return Chip(
-                        label: Text(d, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600)),
+                        label: Text(
+                          d,
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                         backgroundColor: Colors.blue.shade50,
                         side: BorderSide(color: Colors.blue.shade200),
                         deleteIcon: const Icon(Icons.close, size: 14),
@@ -160,7 +186,11 @@ class VitalsAndExamSection extends StatelessWidget {
                 // Clinical Examination Notes
                 const Text(
                   'Physical & Systemic Examination (Optional)',
-                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Color(0xFF334155)),
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF334155),
+                  ),
                 ),
                 const SizedBox(height: 6),
                 TextField(
@@ -196,26 +226,66 @@ class VitalsAndExamSection extends StatelessWidget {
 
   Widget _buildCollapsedSummary() {
     final chips = <Widget>[];
-    if (form.systolicBpController.text.isNotEmpty || form.diastolicBpController.text.isNotEmpty) {
-      chips.add(_buildSummaryPill('BP', '${form.systolicBpController.text}/${form.diastolicBpController.text} mmHg', Icons.speed));
+    if (form.systolicBpController.text.isNotEmpty ||
+        form.diastolicBpController.text.isNotEmpty) {
+      chips.add(
+        _buildSummaryPill(
+          'BP',
+          '${form.systolicBpController.text}/${form.diastolicBpController.text} mmHg',
+          Icons.speed,
+        ),
+      );
     }
     if (form.pulseController.text.isNotEmpty) {
-      chips.add(_buildSummaryPill('Pulse', '${form.pulseController.text} bpm', Icons.favorite_border));
+      chips.add(
+        _buildSummaryPill(
+          'Pulse',
+          '${form.pulseController.text} bpm',
+          Icons.favorite_border,
+        ),
+      );
     }
     if (form.spo2Controller.text.isNotEmpty) {
-      chips.add(_buildSummaryPill('SpO2', '${form.spo2Controller.text}%', Icons.air));
+      chips.add(
+        _buildSummaryPill('SpO2', '${form.spo2Controller.text}%', Icons.air),
+      );
     }
     if (form.tempController.text.isNotEmpty) {
-      chips.add(_buildSummaryPill('Temp', '${form.tempController.text}°F', Icons.thermostat));
+      chips.add(
+        _buildSummaryPill(
+          'Temp',
+          '${form.tempController.text}°F',
+          Icons.thermostat,
+        ),
+      );
     }
     if (form.weightController.text.isNotEmpty) {
-      chips.add(_buildSummaryPill('Weight', '${form.weightController.text} kg', Icons.scale));
+      chips.add(
+        _buildSummaryPill(
+          'Weight',
+          '${form.weightController.text} kg',
+          Icons.scale,
+        ),
+      );
     }
     if (form.chiefComplaints.isNotEmpty) {
-      chips.add(_buildSummaryPill('Complaints', form.chiefComplaints.join(', '), Icons.chat_bubble_outline));
+      chips.add(
+        _buildSummaryPill(
+          'Complaints',
+          form.chiefComplaints.join(', '),
+          Icons.chat_bubble_outline,
+        ),
+      );
     }
     if (form.provisionalDiagnoses.isNotEmpty) {
-      chips.add(_buildSummaryPill('Diagnosis', form.provisionalDiagnoses.join(', '), Icons.medical_services_outlined, isAccent: true));
+      chips.add(
+        _buildSummaryPill(
+          'Diagnosis',
+          form.provisionalDiagnoses.join(', '),
+          Icons.medical_services_outlined,
+          isAccent: true,
+        ),
+      );
     }
 
     if (chips.isEmpty) {
@@ -235,11 +305,19 @@ class VitalsAndExamSection extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Icon(Icons.add_circle_outline, size: 18, color: Colors.teal.shade700),
+              Icon(
+                Icons.add_circle_outline,
+                size: 18,
+                color: Colors.teal.shade700,
+              ),
               const SizedBox(width: 8),
               Text(
                 'No clinical findings or vitals recorded yet. Tap "Add / Edit Findings" to add.',
-                style: TextStyle(fontSize: 12, color: Colors.teal.shade700, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Colors.teal.shade700,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ],
           ),
@@ -247,34 +325,51 @@ class VitalsAndExamSection extends StatelessWidget {
       );
     }
 
-    return Wrap(
-      spacing: 8,
-      runSpacing: 6,
-      children: chips,
-    );
+    return Wrap(spacing: 8, runSpacing: 6, children: chips);
   }
 
-  Widget _buildSummaryPill(String label, String value, IconData icon, {bool isAccent = false}) {
+  Widget _buildSummaryPill(
+    String label,
+    String value,
+    IconData icon, {
+    bool isAccent = false,
+  }) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
         color: isAccent ? Colors.blue.shade50 : const Color(0xFFF1F5F9),
         borderRadius: BorderRadius.circular(6),
-        border: Border.all(color: isAccent ? Colors.blue.shade200 : const Color(0xFFE2E8F0)),
+        border: Border.all(
+          color: isAccent ? Colors.blue.shade200 : const Color(0xFFE2E8F0),
+        ),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 14, color: isAccent ? Colors.blue.shade700 : Colors.grey.shade700),
+          Icon(
+            icon,
+            size: 14,
+            color: isAccent ? Colors.blue.shade700 : Colors.grey.shade700,
+          ),
           const SizedBox(width: 6),
           Text(
             '$label: ',
-            style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: isAccent ? Colors.blue.shade900 : Colors.grey.shade800),
+            style: TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.bold,
+              color: isAccent ? Colors.blue.shade900 : Colors.grey.shade800,
+            ),
           ),
           Flexible(
             child: Text(
               value,
-              style: TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: isAccent ? Colors.blue.shade900 : const Color(0xFF0F172A)),
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w600,
+                color: isAccent
+                    ? Colors.blue.shade900
+                    : const Color(0xFF0F172A),
+              ),
             ),
           ),
         ],

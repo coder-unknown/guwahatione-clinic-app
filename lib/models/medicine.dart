@@ -41,7 +41,8 @@ class Medicine {
       if (defaultDosage != null) 'defaultDosage': defaultDosage,
       if (defaultFrequency != null) 'defaultFrequency': defaultFrequency,
       if (defaultTiming != null) 'defaultTiming': defaultTiming,
-      if (defaultDurationDays != null) 'defaultDurationDays': defaultDurationDays,
+      if (defaultDurationDays != null)
+        'defaultDurationDays': defaultDurationDays,
     };
   }
 

@@ -66,16 +66,23 @@ class CatalogueMedicineCard extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 8),
-                    if (item.manufacturer != null && item.manufacturer!.isNotEmpty)
+                    if (item.manufacturer != null &&
+                        item.manufacturer!.isNotEmpty)
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 6,
+                          vertical: 1,
+                        ),
                         decoration: BoxDecoration(
                           color: const Color(0xFFF1F5F9),
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
                           item.manufacturer!,
-                          style: TextStyle(fontSize: 10, color: Colors.grey.shade600),
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: Colors.grey.shade600,
+                          ),
                         ),
                       ),
                   ],
@@ -95,7 +102,11 @@ class CatalogueMedicineCard extends StatelessWidget {
 
           // Delete Action
           IconButton(
-            icon: const Icon(Icons.delete_outline, size: 20, color: Colors.redAccent),
+            icon: const Icon(
+              Icons.delete_outline,
+              size: 20,
+              color: Colors.redAccent,
+            ),
             tooltip: 'Remove from Catalogue',
             onPressed: onDelete,
           ),
@@ -109,10 +120,7 @@ class CatalogueMedicineCard extends StatelessWidget {
 class CatalogueEmptyState extends StatelessWidget {
   final VoidCallback onClearFilter;
 
-  const CatalogueEmptyState({
-    super.key,
-    required this.onClearFilter,
-  });
+  const CatalogueEmptyState({super.key, required this.onClearFilter});
 
   @override
   Widget build(BuildContext context) {
@@ -125,11 +133,19 @@ class CatalogueEmptyState extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Icon(Icons.inventory_2_outlined, size: 54, color: Colors.teal.shade200),
+          Icon(
+            Icons.inventory_2_outlined,
+            size: 54,
+            color: Colors.teal.shade200,
+          ),
           const SizedBox(height: 16),
           const Text(
             'No medicines match the selected filter',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF334155)),
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF334155),
+            ),
           ),
           const SizedBox(height: 8),
           Text(

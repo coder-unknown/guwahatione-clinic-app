@@ -11,10 +11,7 @@ import '../common/token_badge.dart';
 class DashboardTodayQueueCard extends StatelessWidget {
   final ClinicProvider provider;
 
-  const DashboardTodayQueueCard({
-    super.key,
-    required this.provider,
-  });
+  const DashboardTodayQueueCard({super.key, required this.provider});
 
   @override
   Widget build(BuildContext context) {
@@ -40,19 +37,32 @@ class DashboardTodayQueueCard extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
             child: Row(
               children: [
-                const Icon(Icons.queue_play_next_rounded, size: 20, color: Color(0xFF0F172A)),
+                const Icon(
+                  Icons.queue_play_next_rounded,
+                  size: 20,
+                  color: Color(0xFF0F172A),
+                ),
                 const SizedBox(width: 10),
                 const Text(
                   "Today's Live Queue",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color(0xFF0F172A)),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Color(0xFF0F172A),
+                  ),
                 ),
                 const Spacer(),
                 TextButton(
                   onPressed: () => Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (_) => const AppointmentListScreen()),
+                    MaterialPageRoute(
+                      builder: (_) => const AppointmentListScreen(),
+                    ),
                   ),
-                  child: const Text('Manage Queue →', style: TextStyle(fontSize: 12)),
+                  child: const Text(
+                    'Manage Queue →',
+                    style: TextStyle(fontSize: 12),
+                  ),
                 ),
               ],
             ),
@@ -64,16 +74,27 @@ class DashboardTodayQueueCard extends StatelessWidget {
               child: Center(
                 child: Column(
                   children: [
-                    Icon(Icons.event_available_rounded, size: 44, color: Colors.grey.shade300),
+                    Icon(
+                      Icons.event_available_rounded,
+                      size: 44,
+                      color: Colors.grey.shade300,
+                    ),
                     const SizedBox(height: 12),
                     const Text(
                       'No appointments registered yet today',
-                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF475569)),
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF475569),
+                      ),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       'Tap "+ Book Walk-In Patient" to assign the first token.',
-                      style: TextStyle(fontSize: 12, color: Colors.grey.shade500),
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey.shade500,
+                      ),
                     ),
                   ],
                 ),
@@ -84,7 +105,8 @@ class DashboardTodayQueueCard extends StatelessWidget {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemCount: list.take(8).length,
-              separatorBuilder: (_, index) => const Divider(height: 1, color: Color(0xFFF1F5F9)),
+              separatorBuilder: (_, index) =>
+                  const Divider(height: 1, color: Color(0xFFF1F5F9)),
               itemBuilder: (ctx, i) {
                 final appt = list[i];
                 return ListTile(
@@ -99,12 +121,18 @@ class DashboardTodayQueueCard extends StatelessWidget {
                     children: [
                       Text(
                         appt.patientName,
-                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 13,
+                        ),
                       ),
                       const SizedBox(width: 8),
                       Text(
                         '(${appt.patientPhone})',
-                        style: TextStyle(fontSize: 11, color: Colors.grey.shade600),
+                        style: TextStyle(
+                          fontSize: 11,
+                          color: Colors.grey.shade600,
+                        ),
                       ),
                     ],
                   ),
@@ -117,39 +145,56 @@ class DashboardTodayQueueCard extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             StreamBuilder(
-                              stream: provider.streamChamberSession(appt.doctorId, appt.scheduledDate),
+                              stream: provider.streamChamberSession(
+                                appt.doctorId,
+                                appt.scheduledDate,
+                              ),
                               builder: (context, chamberSnap) {
                                 final cData = chamberSnap.data?.data();
-                                final cStatus = (cData?['status'] as String?) ?? 'idle';
-                                final isDoctorReady = cStatus == 'ready_for_next';
-                                final isDoctorOnBreak = cStatus == 'consultation_ended';
+                                final cStatus =
+                                    (cData?['status'] as String?) ?? 'idle';
+                                final isDoctorReady =
+                                    cStatus == 'ready_for_next';
+                                final isDoctorOnBreak =
+                                    cStatus == 'consultation_ended';
 
                                 final btnBg = isDoctorReady
                                     ? const Color(0xFF15803D)
-                                    : (isDoctorOnBreak ? const Color(0xFFB45309) : Colors.teal.shade700);
+                                    : (isDoctorOnBreak
+                                          ? const Color(0xFFB45309)
+                                          : Colors.teal.shade700);
 
                                 final btnLabel = isDoctorReady
                                     ? 'Send In'
-                                    : (isDoctorOnBreak ? 'On Break' : 'Call In');
+                                    : (isDoctorOnBreak
+                                          ? 'On Break'
+                                          : 'Call In');
 
                                 return FilledButton.icon(
                                   style: FilledButton.styleFrom(
                                     backgroundColor: btnBg,
                                     foregroundColor: Colors.white,
-                                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 10,
+                                      vertical: 6,
+                                    ),
                                     visualDensity: VisualDensity.compact,
                                   ),
                                   icon: Icon(
                                     isDoctorReady
                                         ? Icons.login_rounded
                                         : (isDoctorOnBreak
-                                            ? Icons.coffee_rounded
-                                            : Icons.record_voice_over_rounded),
+                                              ? Icons.coffee_rounded
+                                              : Icons
+                                                    .record_voice_over_rounded),
                                     size: 14,
                                   ),
                                   label: Text(
                                     btnLabel,
-                                    style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
+                                    style: const TextStyle(
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                   onPressed: () async {
                                     if (isDoctorOnBreak) {
@@ -158,9 +203,14 @@ class DashboardTodayQueueCard extends StatelessWidget {
                                         builder: (ctx) => AlertDialog(
                                           title: Row(
                                             children: [
-                                              Icon(Icons.coffee_rounded, color: Colors.amber.shade800),
+                                              Icon(
+                                                Icons.coffee_rounded,
+                                                color: Colors.amber.shade800,
+                                              ),
                                               const SizedBox(width: 8),
-                                              const Text('Doctor Taking Breather'),
+                                              const Text(
+                                                'Doctor Taking Breather',
+                                              ),
                                             ],
                                           ),
                                           content: Text(
@@ -169,13 +219,23 @@ class DashboardTodayQueueCard extends StatelessWidget {
                                           ),
                                           actions: [
                                             TextButton(
-                                              onPressed: () => Navigator.pop(ctx, false),
-                                              child: const Text('Wait for Doctor'),
+                                              onPressed: () =>
+                                                  Navigator.pop(ctx, false),
+                                              child: const Text(
+                                                'Wait for Doctor',
+                                              ),
                                             ),
                                             FilledButton(
-                                              style: FilledButton.styleFrom(backgroundColor: const Color(0xFFB45309)),
-                                              onPressed: () => Navigator.pop(ctx, true),
-                                              child: const Text('Send Inside Anyway'),
+                                              style: FilledButton.styleFrom(
+                                                backgroundColor: const Color(
+                                                  0xFFB45309,
+                                                ),
+                                              ),
+                                              onPressed: () =>
+                                                  Navigator.pop(ctx, true),
+                                              child: const Text(
+                                                'Send Inside Anyway',
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -189,9 +249,13 @@ class DashboardTodayQueueCard extends StatelessWidget {
                                       appointment: appt,
                                     );
                                     if (context.mounted) {
-                                      ScaffoldMessenger.of(context).showSnackBar(
+                                      ScaffoldMessenger.of(
+                                        context,
+                                      ).showSnackBar(
                                         SnackBar(
-                                          content: Text('Admitted Token #${appt.queueNumber} (${appt.patientName}) to Dr. ${appt.doctorName} chamber'),
+                                          content: Text(
+                                            'Admitted Token #${appt.queueNumber} (${appt.patientName}) to Dr. ${appt.doctorName} chamber',
+                                          ),
                                           backgroundColor: Colors.teal.shade800,
                                           duration: const Duration(seconds: 3),
                                         ),
@@ -202,10 +266,16 @@ class DashboardTodayQueueCard extends StatelessWidget {
                               },
                             ),
                             const SizedBox(width: 8),
-                            AppointmentStatusChip(status: appt.status, isCompact: true),
+                            AppointmentStatusChip(
+                              status: appt.status,
+                              isCompact: true,
+                            ),
                           ],
                         )
-                      : AppointmentStatusChip(status: appt.status, isCompact: true),
+                      : AppointmentStatusChip(
+                          status: appt.status,
+                          isCompact: true,
+                        ),
                 );
               },
             ),

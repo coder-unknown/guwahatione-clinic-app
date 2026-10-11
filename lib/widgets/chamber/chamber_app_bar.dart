@@ -32,7 +32,11 @@ class ChamberAppBar extends StatelessWidget implements PreferredSizeWidget {
               color: Colors.teal.shade50,
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Icon(Icons.local_hospital_rounded, color: Colors.teal.shade700, size: 22),
+            child: Icon(
+              Icons.local_hospital_rounded,
+              color: Colors.teal.shade700,
+              size: 22,
+            ),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -55,12 +59,19 @@ class ChamberAppBar extends StatelessWidget implements PreferredSizeWidget {
                     ),
                     const SizedBox(width: 8),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 2,
+                      ),
                       decoration: BoxDecoration(
-                        color: isPreviewMode ? Colors.purple.shade50 : Colors.teal.shade50,
+                        color: isPreviewMode
+                            ? Colors.purple.shade50
+                            : Colors.teal.shade50,
                         borderRadius: BorderRadius.circular(6),
                         border: Border.all(
-                          color: isPreviewMode ? Colors.purple.shade200 : Colors.teal.shade200,
+                          color: isPreviewMode
+                              ? Colors.purple.shade200
+                              : Colors.teal.shade200,
                         ),
                       ),
                       child: Text(
@@ -69,7 +80,9 @@ class ChamberAppBar extends StatelessWidget implements PreferredSizeWidget {
                           fontSize: 10,
                           fontWeight: FontWeight.w700,
                           letterSpacing: 0.5,
-                          color: isPreviewMode ? Colors.purple.shade700 : Colors.teal.shade700,
+                          color: isPreviewMode
+                              ? Colors.purple.shade700
+                              : Colors.teal.shade700,
                         ),
                       ),
                     ),
@@ -106,7 +119,9 @@ class ChamberAppBar extends StatelessWidget implements PreferredSizeWidget {
       context: context,
       builder: (ctx) => AlertDialog(
         title: const Text('Exit Chamber?'),
-        content: const Text('Do you want to log out of this doctor chamber session?'),
+        content: const Text(
+          'Do you want to log out of this doctor chamber session?',
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),

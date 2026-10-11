@@ -39,9 +39,7 @@ class BookingPatientFields extends StatelessWidget {
                   prefixIcon: Icon(Icons.phone),
                 ),
                 keyboardType: TextInputType.phone,
-                inputFormatters: [
-                  FilteringTextInputFormatter.digitsOnly,
-                ],
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 validator: (val) =>
                     (val == null || val.length < 10) ? 'Invalid Phone' : null,
                 onChanged: onPhoneChanged,
@@ -81,9 +79,7 @@ class BookingPatientFields extends StatelessWidget {
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: TextInputType.number,
-                inputFormatters: [
-                  FilteringTextInputFormatter.digitsOnly,
-                ],
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 validator: (val) =>
                     (val == null || val.isEmpty) ? 'Required' : null,
               ),

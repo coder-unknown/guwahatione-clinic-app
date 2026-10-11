@@ -112,7 +112,8 @@ class ChamberControlBanner extends StatelessWidget {
           const SizedBox(width: 16),
           FilledButton.icon(
             style: FilledButton.styleFrom(
-              backgroundColor: const Color(0xFF0F766E), // Teal-700
+              backgroundColor: const Color(0xFF0F766E),
+              // Teal-700
               foregroundColor: Colors.white,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
               elevation: 2,
@@ -220,7 +221,10 @@ class ChamberControlBanner extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
             ),
             icon: const Icon(Icons.refresh_rounded, size: 16),
-            label: const Text('Re-Signal Reception', style: TextStyle(fontSize: 12)),
+            label: const Text(
+              'Re-Signal Reception',
+              style: TextStyle(fontSize: 12),
+            ),
             onPressed: onNextPatient,
           ),
         ],
@@ -275,7 +279,8 @@ class ChamberControlBanner extends StatelessWidget {
                         color: Color(0xFF1E40AF),
                       ),
                     ),
-                    if (activePatientName != null && activePatientName!.isNotEmpty)
+                    if (activePatientName != null &&
+                        activePatientName!.isNotEmpty)
                       Text(
                         '($activePatientName)',
                         style: const TextStyle(
@@ -299,11 +304,16 @@ class ChamberControlBanner extends StatelessWidget {
             FilledButton.icon(
               style: FilledButton.styleFrom(
                 backgroundColor: const Color(0xFF2563EB),
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 12,
+                ),
               ),
               icon: const Icon(Icons.file_open_rounded, size: 18),
-              label: const Text('Open Clinical File',
-                  style: TextStyle(fontWeight: FontWeight.bold)),
+              label: const Text(
+                'Open Clinical File',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
               onPressed: onOpenActivePatient,
             ),
           ],
@@ -322,8 +332,11 @@ class ChamberControlBanner extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const Icon(Icons.medical_services_outlined,
-              color: Color(0xFF475569), size: 22),
+          const Icon(
+            Icons.medical_services_outlined,
+            color: Color(0xFF475569),
+            size: 22,
+          ),
           const SizedBox(width: 14),
           Expanded(
             child: Text(

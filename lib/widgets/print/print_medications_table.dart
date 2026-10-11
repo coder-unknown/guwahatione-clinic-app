@@ -33,7 +33,9 @@ class PrintMedicationsTable extends StatelessWidget {
         if (activeMeds.isEmpty)
           Container(
             padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(border: Border.all(color: Colors.grey.shade400, width: 0.6)),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey.shade400, width: 0.6),
+            ),
             child: const Center(
               child: Text(
                 'No active medications prescribed for this visit.',
@@ -58,23 +60,54 @@ class PrintMedicationsTable extends StatelessWidget {
                 children: const [
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 6, horizontal: 4),
-                    child: Text('#', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 11), textAlign: TextAlign.center),
+                    child: Text(
+                      '#',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 11,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 6, horizontal: 6),
-                    child: Text('Medicine & Composition', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 11)),
+                    child: Text(
+                      'Medicine & Composition',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 11,
+                      ),
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 6, horizontal: 4),
-                    child: Text('Dose & Timing', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 11)),
+                    child: Text(
+                      'Dose & Timing',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 11,
+                      ),
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 6, horizontal: 4),
-                    child: Text('Frequency', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 11)),
+                    child: Text(
+                      'Frequency',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 11,
+                      ),
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 6, horizontal: 4),
-                    child: Text('Duration', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 11)),
+                    child: Text(
+                      'Duration',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 11,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -91,11 +124,21 @@ class PrintMedicationsTable extends StatelessWidget {
                 return TableRow(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),
-                      child: Text('$idx', style: const TextStyle(fontSize: 11), textAlign: TextAlign.center),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 6,
+                        horizontal: 4,
+                      ),
+                      child: Text(
+                        '$idx',
+                        style: const TextStyle(fontSize: 11),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 6),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 6,
+                        horizontal: 6,
+                      ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -103,11 +146,16 @@ class PrintMedicationsTable extends StatelessWidget {
                             children: [
                               Text(
                                 item.effectiveName,
-                                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12,
+                                ),
                               ),
                               const SizedBox(width: 6),
                               Text(
-                                item.action == MedicationAction.continueAction ? '[CONT]' : '[NEW]',
+                                item.action == MedicationAction.continueAction
+                                    ? '[CONT]'
+                                    : '[NEW]',
                                 style: TextStyle(
                                   fontSize: 9,
                                   fontWeight: FontWeight.w700,
@@ -118,27 +166,55 @@ class PrintMedicationsTable extends StatelessWidget {
                           ),
                           Text(
                             item.composition,
-                            style: TextStyle(fontSize: 10, color: Colors.grey.shade800),
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: Colors.grey.shade800,
+                            ),
                           ),
-                          if (item.instructions != null && item.instructions!.isNotEmpty)
+                          if (item.instructions != null &&
+                              item.instructions!.isNotEmpty)
                             Text(
                               "Note: ${item.instructions}",
-                              style: const TextStyle(fontSize: 10, fontStyle: FontStyle.italic),
+                              style: const TextStyle(
+                                fontSize: 10,
+                                fontStyle: FontStyle.italic,
+                              ),
                             ),
                         ],
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),
-                      child: Text("${item.dosage}\n${item.timing}", style: const TextStyle(fontSize: 11)),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 6,
+                        horizontal: 4,
+                      ),
+                      child: Text(
+                        "${item.dosage}\n${item.timing}",
+                        style: const TextStyle(fontSize: 11),
+                      ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),
-                      child: Text(item.frequency, style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w600)),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 6,
+                        horizontal: 4,
+                      ),
+                      child: Text(
+                        item.frequency,
+                        style: const TextStyle(
+                          fontSize: 11,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),
-                      child: Text(durationLabel, style: const TextStyle(fontSize: 11)),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 6,
+                        horizontal: 4,
+                      ),
+                      child: Text(
+                        durationLabel,
+                        style: const TextStyle(fontSize: 11),
+                      ),
                     ),
                   ],
                 );
@@ -159,10 +235,7 @@ class PrintMedicationsTable extends StatelessWidget {
 class PrintDiscontinuedMedicationsBox extends StatelessWidget {
   final List<PrescriptionItem> stoppedMeds;
 
-  const PrintDiscontinuedMedicationsBox({
-    super.key,
-    required this.stoppedMeds,
-  });
+  const PrintDiscontinuedMedicationsBox({super.key, required this.stoppedMeds});
 
   @override
   Widget build(BuildContext context) {
@@ -178,7 +251,11 @@ class PrintDiscontinuedMedicationsBox extends StatelessWidget {
         children: [
           const Text(
             '🛑 Discontinued / Stopped Medications This Visit:',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 11, color: Color(0xFF0F172A)),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 11,
+              color: Color(0xFF0F172A),
+            ),
           ),
           const SizedBox(height: 4),
           ...stoppedMeds.map((item) {
@@ -187,7 +264,10 @@ class PrintDiscontinuedMedicationsBox extends StatelessWidget {
               padding: const EdgeInsets.only(left: 6, bottom: 2),
               child: Text(
                 "• ${item.effectiveName} (${item.composition}) — Reason: $reason",
-                style: const TextStyle(fontSize: 10.5, fontStyle: FontStyle.italic),
+                style: const TextStyle(
+                  fontSize: 10.5,
+                  fontStyle: FontStyle.italic,
+                ),
               ),
             );
           }),

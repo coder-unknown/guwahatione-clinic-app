@@ -1,25 +1,25 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../models/patient.dart';
 import '../models/appointment.dart';
-import '../models/doctor.dart';
 import '../models/consultation.dart';
+import '../models/doctor.dart';
 import '../models/medicine.dart';
+import '../models/patient.dart';
 import '../models/prescription_item.dart';
 import 'booking_service.dart';
-import 'consultation_service.dart';
-import 'chamber_service.dart';
-import 'patient_service.dart';
-import 'doctor_service.dart';
 import 'catalogue_service.dart';
+import 'chamber_service.dart';
+import 'consultation_service.dart';
+import 'doctor_service.dart';
+import 'patient_service.dart';
 
-export 'firestore_paths.dart';
 export 'booking_service.dart';
-export 'consultation_service.dart';
-export 'chamber_service.dart';
-export 'patient_service.dart';
-export 'doctor_service.dart';
 export 'catalogue_service.dart';
+export 'chamber_service.dart';
+export 'consultation_service.dart';
+export 'doctor_service.dart';
+export 'firestore_paths.dart';
+export 'patient_service.dart';
 
 /// Unified clinical services facade providing backward-compatible access
 /// to modular single-responsibility backend services.
@@ -39,24 +39,26 @@ class FirebaseService {
     PatientService? patientService,
     DoctorService? doctorService,
     CatalogueService? catalogueService,
-  })  : _bookingService =
-            bookingService ?? BookingService(firestore: firestore),
-        _consultationService =
-            consultationService ?? ConsultationService(firestore: firestore),
-        _chamberService =
-            chamberService ?? ChamberService(firestore: firestore),
-        _patientService =
-            patientService ?? PatientService(firestore: firestore),
-        _doctorService = doctorService ?? DoctorService(firestore: firestore),
-        _catalogueService =
-            catalogueService ?? CatalogueService(firestore: firestore);
+  }) : _bookingService = bookingService ?? BookingService(firestore: firestore),
+       _consultationService =
+           consultationService ?? ConsultationService(firestore: firestore),
+       _chamberService = chamberService ?? ChamberService(firestore: firestore),
+       _patientService = patientService ?? PatientService(firestore: firestore),
+       _doctorService = doctorService ?? DoctorService(firestore: firestore),
+       _catalogueService =
+           catalogueService ?? CatalogueService(firestore: firestore);
 
   // Sub-service accessors for granular domain consumption
   BookingService get booking => _bookingService;
+
   ConsultationService get consultation => _consultationService;
+
   ChamberService get chamber => _chamberService;
+
   PatientService get patient => _patientService;
+
   DoctorService get doctor => _doctorService;
+
   CatalogueService get catalogue => _catalogueService;
 
   // ---------------------------------------------------------------------------
@@ -78,29 +80,27 @@ class FirebaseService {
     required DateTime scheduledDate,
     required String doctorId,
     required String doctorName,
-  }) =>
-      _bookingService.bookAppointment(
-        appointmentId: appointmentId,
-        patient: patient,
-        paymentType: paymentType,
-        amountCollected: amountCollected,
-        scheduledDate: scheduledDate,
-        doctorId: doctorId,
-        doctorName: doctorName,
-      );
+  }) => _bookingService.bookAppointment(
+    appointmentId: appointmentId,
+    patient: patient,
+    paymentType: paymentType,
+    amountCollected: amountCollected,
+    scheduledDate: scheduledDate,
+    doctorId: doctorId,
+    doctorName: doctorName,
+  );
 
   Future<void> updateAppointmentStatus(
     String appointmentId,
     AppointmentStatus status, {
     int? collectedAmount,
     PaymentType? paymentType,
-  }) =>
-      _bookingService.updateAppointmentStatus(
-        appointmentId,
-        status,
-        collectedAmount: collectedAmount,
-        paymentType: paymentType,
-      );
+  }) => _bookingService.updateAppointmentStatus(
+    appointmentId,
+    status,
+    collectedAmount: collectedAmount,
+    paymentType: paymentType,
+  );
 
   Stream<List<Appointment>> getAppointmentsForDate(DateTime date) =>
       _bookingService.getAppointmentsForDate(date);
@@ -108,8 +108,7 @@ class FirebaseService {
   Stream<List<Appointment>> getAppointmentsForDoctorAndDate(
     String doctorId,
     DateTime date,
-  ) =>
-      _bookingService.getAppointmentsForDoctorAndDate(doctorId, date);
+  ) => _bookingService.getAppointmentsForDoctorAndDate(doctorId, date);
 
   Future<List<Appointment>> getAppointmentsForPatient(String phone) =>
       _bookingService.getAppointmentsForPatient(phone);
@@ -125,51 +124,43 @@ class FirebaseService {
     required String doctorId,
     required DateTime date,
     required Appointment appointment,
-  }) =>
-      _chamberService.callTokenIntoChamber(
-        doctorId: doctorId,
-        date: date,
-        appointment: appointment,
-      );
+  }) => _chamberService.callTokenIntoChamber(
+    doctorId: doctorId,
+    date: date,
+    appointment: appointment,
+  );
 
   Stream<DocumentSnapshot<Map<String, dynamic>>> streamChamberSession(
     String doctorId,
     DateTime date,
-  ) =>
-      _chamberService.streamChamberSession(doctorId, date);
+  ) => _chamberService.streamChamberSession(doctorId, date);
 
   Future<void> notifyConsultationEnded({
     required String doctorId,
     required DateTime date,
     required int queueNumber,
     required String patientName,
-  }) =>
-      _chamberService.notifyConsultationEnded(
-        doctorId: doctorId,
-        date: date,
-        queueNumber: queueNumber,
-        patientName: patientName,
-      );
+  }) => _chamberService.notifyConsultationEnded(
+    doctorId: doctorId,
+    date: date,
+    queueNumber: queueNumber,
+    patientName: patientName,
+  );
 
   Future<void> notifyReadyForNext({
     required String doctorId,
     required DateTime date,
-  }) =>
-      _chamberService.notifyReadyForNext(
-        doctorId: doctorId,
-        date: date,
-      );
+  }) => _chamberService.notifyReadyForNext(doctorId: doctorId, date: date);
 
   Future<void> notifyConsultationStarted({
     required String doctorId,
     required DateTime date,
     required Appointment appointment,
-  }) =>
-      _chamberService.notifyConsultationStarted(
-        doctorId: doctorId,
-        date: date,
-        appointment: appointment,
-      );
+  }) => _chamberService.notifyConsultationStarted(
+    doctorId: doctorId,
+    date: date,
+    appointment: appointment,
+  );
 
   Future<void> clearChamberSession(String doctorId, DateTime date) =>
       _chamberService.clearChamberSession(doctorId, date);
@@ -183,8 +174,7 @@ class FirebaseService {
   Future<void> updateDoctorSearchPreference(
     String doctorId,
     String searchPreference,
-  ) =>
-      _doctorService.updateDoctorSearchPreference(doctorId, searchPreference);
+  ) => _doctorService.updateDoctorSearchPreference(doctorId, searchPreference);
 
   Stream<List<Doctor>> getDoctors() => _doctorService.getDoctors();
 

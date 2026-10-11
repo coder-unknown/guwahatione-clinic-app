@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../providers/clinic_provider.dart';
 import 'add_doctor_screen.dart';
 import 'doctor_chamber_screen.dart';
@@ -24,7 +25,9 @@ class DoctorListScreen extends StatelessWidget {
               final doctor = doctors[index];
               return Card(
                 margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Row(
@@ -48,28 +51,43 @@ class DoctorListScreen extends StatelessWidget {
                           children: [
                             Text(
                               doctor.name,
-                              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
                             ),
                             const SizedBox(height: 2),
                             Text(
                               '${doctor.specialty} • Fee: ₹${doctor.consultationFee}',
-                              style: TextStyle(fontSize: 13, color: Colors.grey.shade700),
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: Colors.grey.shade700,
+                              ),
                             ),
                             const SizedBox(height: 6),
                             Wrap(
                               spacing: 8,
                               children: [
                                 Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                    vertical: 2,
+                                  ),
                                   decoration: BoxDecoration(
                                     color: Colors.amber.shade50,
                                     borderRadius: BorderRadius.circular(6),
-                                    border: Border.all(color: Colors.amber.shade300),
+                                    border: Border.all(
+                                      color: Colors.amber.shade300,
+                                    ),
                                   ),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      const Icon(Icons.key, size: 12, color: Colors.amber),
+                                      const Icon(
+                                        Icons.key,
+                                        size: 12,
+                                        color: Colors.amber,
+                                      ),
                                       const SizedBox(width: 4),
                                       Text(
                                         'Chamber PIN: ${doctor.pin}',
@@ -84,7 +102,10 @@ class DoctorListScreen extends StatelessWidget {
                                 ),
                                 Text(
                                   doctor.availableDays.join(', '),
-                                  style: TextStyle(fontSize: 11, color: Colors.grey.shade500),
+                                  style: TextStyle(
+                                    fontSize: 11,
+                                    color: Colors.grey.shade500,
+                                  ),
                                 ),
                               ],
                             ),
@@ -133,4 +154,3 @@ class DoctorListScreen extends StatelessWidget {
     );
   }
 }
-

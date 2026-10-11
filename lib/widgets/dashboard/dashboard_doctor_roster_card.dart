@@ -7,10 +7,7 @@ import '../../screens/doctor_list_screen.dart';
 class DashboardDoctorRosterCard extends StatelessWidget {
   final ClinicProvider provider;
 
-  const DashboardDoctorRosterCard({
-    super.key,
-    required this.provider,
-  });
+  const DashboardDoctorRosterCard({super.key, required this.provider});
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +33,19 @@ class DashboardDoctorRosterCard extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
             child: Row(
               children: [
-                const Icon(Icons.meeting_room_outlined, size: 20, color: Color(0xFF0F172A)),
+                const Icon(
+                  Icons.meeting_room_outlined,
+                  size: 20,
+                  color: Color(0xFF0F172A),
+                ),
                 const SizedBox(width: 10),
                 const Text(
                   'Doctor Chamber Roster',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color(0xFF0F172A)),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Color(0xFF0F172A),
+                  ),
                 ),
                 const Spacer(),
                 TextButton(
@@ -48,7 +53,10 @@ class DashboardDoctorRosterCard extends StatelessWidget {
                     context,
                     MaterialPageRoute(builder: (_) => const DoctorListScreen()),
                   ),
-                  child: const Text('Manage PINs →', style: TextStyle(fontSize: 12)),
+                  child: const Text(
+                    'Manage PINs →',
+                    style: TextStyle(fontSize: 12),
+                  ),
                 ),
               ],
             ),
@@ -69,7 +77,8 @@ class DashboardDoctorRosterCard extends StatelessWidget {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemCount: doctors.length,
-              separatorBuilder: (_, index) => const Divider(height: 1, color: Color(0xFFF1F5F9)),
+              separatorBuilder: (_, index) =>
+                  const Divider(height: 1, color: Color(0xFFF1F5F9)),
               itemBuilder: (ctx, i) {
                 final doc = doctors[i];
                 final patientCount = provider.todayAppointments
@@ -80,9 +89,13 @@ class DashboardDoctorRosterCard extends StatelessWidget {
                   stream: provider.streamChamberSession(doc.id, DateTime.now()),
                   builder: (context, chamberSnap) {
                     final chamberData = chamberSnap.data?.data();
-                    final chamberStatus = (chamberData?['status'] as String?) ?? 'idle';
-                    final lastCompletedQNum = (chamberData?['lastCompletedQueueNumber'] as num?)?.toInt();
-                    final activeQNum = (chamberData?['activeQueueNumber'] as num?)?.toInt();
+                    final chamberStatus =
+                        (chamberData?['status'] as String?) ?? 'idle';
+                    final lastCompletedQNum =
+                        (chamberData?['lastCompletedQueueNumber'] as num?)
+                            ?.toInt();
+                    final activeQNum =
+                        (chamberData?['activeQueueNumber'] as num?)?.toInt();
                     final activePName = chamberData?['patientName'] as String?;
 
                     Color statusBadgeBg;
@@ -99,22 +112,26 @@ class DashboardDoctorRosterCard extends StatelessWidget {
                       statusBadgeBg = const Color(0xFFFEF3C7);
                       statusBadgeFg = const Color(0xFFB45309);
                       statusLabel = 'ON BREAK';
-                      statusSubtitle = '☕ Ended #${lastCompletedQNum ?? '--'} • Taking breather';
+                      statusSubtitle =
+                          '☕ Ended #${lastCompletedQNum ?? '--'} • Taking breather';
                     } else if (chamberStatus == 'calling') {
                       statusBadgeBg = const Color(0xFFDBEAFE);
                       statusBadgeFg = const Color(0xFF1D4ED8);
                       statusLabel = 'ADMITTED';
-                      statusSubtitle = '🚪 Token #${activeQNum ?? '--'} entering chamber';
+                      statusSubtitle =
+                          '🚪 Token #${activeQNum ?? '--'} entering chamber';
                     } else if (chamberStatus == 'in_consultation') {
                       statusBadgeBg = const Color(0xFFEDE9FE);
                       statusBadgeFg = const Color(0xFF6D28D9);
                       statusLabel = 'CONSULTING';
-                      statusSubtitle = '🩺 Consulting Token #${activeQNum ?? '--'}${activePName != null && activePName.isNotEmpty ? ' ($activePName)' : ''}';
+                      statusSubtitle =
+                          '🩺 Consulting Token #${activeQNum ?? '--'}${activePName != null && activePName.isNotEmpty ? ' ($activePName)' : ''}';
                     } else {
                       statusBadgeBg = const Color(0xFFF1F5F9);
                       statusBadgeFg = const Color(0xFF64748B);
                       statusLabel = 'IDLE';
-                      statusSubtitle = '${doc.specialty} • Fee: ₹${doc.consultationFee}';
+                      statusSubtitle =
+                          '${doc.specialty} • Fee: ₹${doc.consultationFee}';
                     }
 
                     return ListTile(
@@ -125,7 +142,9 @@ class DashboardDoctorRosterCard extends StatelessWidget {
                             radius: 16,
                             backgroundColor: Colors.indigo.shade50,
                             child: Text(
-                              doc.name.isNotEmpty ? doc.name[0].toUpperCase() : 'D',
+                              doc.name.isNotEmpty
+                                  ? doc.name[0].toUpperCase()
+                                  : 'D',
                               style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.bold,
@@ -143,7 +162,10 @@ class DashboardDoctorRosterCard extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   color: const Color(0xFF22C55E),
                                   shape: BoxShape.circle,
-                                  border: Border.all(color: Colors.white, width: 1.5),
+                                  border: Border.all(
+                                    color: Colors.white,
+                                    width: 1.5,
+                                  ),
                                 ),
                               ),
                             ),
@@ -155,12 +177,18 @@ class DashboardDoctorRosterCard extends StatelessWidget {
                             child: Text(
                               "Dr. ${doc.name}",
                               overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13,
+                              ),
                             ),
                           ),
                           const SizedBox(width: 6),
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1.5),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 5,
+                              vertical: 1.5,
+                            ),
                             decoration: BoxDecoration(
                               color: statusBadgeBg,
                               borderRadius: BorderRadius.circular(4),
@@ -190,14 +218,20 @@ class DashboardDoctorRosterCard extends StatelessWidget {
                         ),
                       ),
                       trailing: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 3,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.grey.shade100,
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Text(
                           "$patientCount tokens",
-                          style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w600),
+                          style: const TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                     );

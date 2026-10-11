@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../models/appointment.dart';
 import '../models/patient.dart';
 import 'firestore_paths.dart';
@@ -8,7 +9,7 @@ class BookingService {
   final FirebaseFirestore _firestore;
 
   BookingService({FirebaseFirestore? firestore})
-      : _firestore = firestore ?? FirebaseFirestore.instance;
+    : _firestore = firestore ?? FirebaseFirestore.instance;
 
   CollectionReference<Map<String, dynamic>> get _appointmentsRef =>
       _firestore.collection(FirestorePaths.appointments);

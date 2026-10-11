@@ -91,14 +91,18 @@ abstract class RevenueEngine {
   /// Calculates total fees collected specifically for a doctor across their completed appointments.
   static int calculateDoctorTotalFees(List<Appointment> appointments) {
     return appointments
-        .where((a) =>
-            a.status == AppointmentStatus.completed &&
-            a.paymentType == PaymentType.paid)
+        .where(
+          (a) =>
+              a.status == AppointmentStatus.completed &&
+              a.paymentType == PaymentType.paid,
+        )
         .fold(0, (sum, a) => sum + a.amountCollected);
   }
 
   /// Computes reception-level daily metrics in a single pass.
-  static DailyRevenueMetrics calculateDailyMetrics(List<Appointment> appointments) {
+  static DailyRevenueMetrics calculateDailyMetrics(
+    List<Appointment> appointments,
+  ) {
     int completed = 0;
     int pending = 0;
     int absent = 0;
@@ -129,7 +133,9 @@ abstract class RevenueEngine {
   }
 
   /// Computes all KPI metrics required for the Doctor Chamber in a single pass.
-  static ChamberKpiMetrics calculateChamberKpis(List<Appointment> appointments) {
+  static ChamberKpiMetrics calculateChamberKpis(
+    List<Appointment> appointments,
+  ) {
     int attended = 0;
     int paid = 0;
     int free = 0;
@@ -170,7 +176,8 @@ abstract class RevenueEngine {
 
   /// Groups appointments by doctor and computes performance analytics.
   static List<DoctorAnalyticsSummary> calculateDoctorAnalytics(
-      List<Appointment> appointments) {
+    List<Appointment> appointments,
+  ) {
     if (appointments.isEmpty) return const [];
 
     final Map<String, List<Appointment>> grouped = {};

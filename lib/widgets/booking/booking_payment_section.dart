@@ -59,7 +59,8 @@ class BookingPaymentSection extends StatelessWidget {
             String label;
             bool enabled = true;
             if (type == PaymentType.paid) {
-              final fee = selectedDoctor?.consultationFee ??
+              final fee =
+                  selectedDoctor?.consultationFee ??
                   AppConstants.defaultConsultationFee;
               label = 'Paid (₹$fee)';
             } else if (type == PaymentType.freeFamily) {
@@ -81,9 +82,7 @@ class BookingPaymentSection extends StatelessWidget {
               enabled: enabled,
               child: Text(
                 label,
-                style: TextStyle(
-                  color: enabled ? null : Colors.grey.shade500,
-                ),
+                style: TextStyle(color: enabled ? null : Colors.grey.shade500),
               ),
             );
           }).toList(),

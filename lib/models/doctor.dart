@@ -42,7 +42,8 @@ class Doctor {
       specialty: json['specialty'] as String? ?? 'General',
       phone: json['phone'] as String? ?? '',
       availableDays: List<String>.from(json['availableDays'] ?? []),
-      blockedDates: (json['blockedDates'] as List<dynamic>?)
+      blockedDates:
+          (json['blockedDates'] as List<dynamic>?)
               ?.map((d) => DateTime.parse(d as String))
               .toList() ??
           [],
@@ -51,4 +52,4 @@ class Doctor {
       searchPreference: json['searchPreference'] as String? ?? 'brandFirst',
     );
   }
-}
+}

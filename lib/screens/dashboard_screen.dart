@@ -19,8 +19,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<ClinicProvider>(context, listen: false)
-          .startListeningToAppointments();
+      Provider.of<ClinicProvider>(
+        context,
+        listen: false,
+      ).startListeningToAppointments();
     });
   }
 
@@ -45,7 +47,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
               backgroundColor: Colors.white,
               actions: [
                 IconButton(
-                  icon: const Icon(Icons.logout_rounded, color: Colors.redAccent),
+                  icon: const Icon(
+                    Icons.logout_rounded,
+                    color: Colors.redAccent,
+                  ),
                   tooltip: 'Logout',
                   onPressed: () {
                     Provider.of<AuthProvider>(context, listen: false).logout();
@@ -91,7 +96,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           const SizedBox(width: 20),
                           Expanded(
                             flex: 4,
-                            child: DashboardDoctorRosterCard(provider: provider),
+                            child: DashboardDoctorRosterCard(
+                              provider: provider,
+                            ),
                           ),
                         ],
                       )
@@ -123,7 +130,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
           'Book Walk-In',
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        icon: const Icon(Icons.person_add_rounded, color: Colors.white, size: 20),
+        icon: const Icon(
+          Icons.person_add_rounded,
+          color: Colors.white,
+          size: 20,
+        ),
         backgroundColor: Colors.teal.shade700,
       ),
     );

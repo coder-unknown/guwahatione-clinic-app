@@ -39,7 +39,11 @@ class CatalogueHeaderAndStats extends StatelessWidget {
               color: Colors.teal.shade50,
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Icon(Icons.medication_rounded, size: 28, color: Colors.teal.shade700),
+            child: Icon(
+              Icons.medication_rounded,
+              size: 28,
+              color: Colors.teal.shade700,
+            ),
           ),
           const SizedBox(width: 16),
           Expanded(
@@ -74,9 +78,16 @@ class CatalogueHeaderAndStats extends StatelessWidget {
               children: [
                 Text(
                   "$totalProducts",
-                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color(0xFF0F172A)),
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Color(0xFF0F172A),
+                  ),
                 ),
-                Text("Products", style: TextStyle(fontSize: 11, color: Colors.grey.shade600)),
+                Text(
+                  "Products",
+                  style: TextStyle(fontSize: 11, color: Colors.grey.shade600),
+                ),
               ],
             ),
           ),
@@ -92,9 +103,16 @@ class CatalogueHeaderAndStats extends StatelessWidget {
               children: [
                 Text(
                   "$totalMolecules",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.teal.shade800),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Colors.teal.shade800,
+                  ),
                 ),
-                Text("Molecules", style: TextStyle(fontSize: 11, color: Colors.teal.shade700)),
+                Text(
+                  "Molecules",
+                  style: TextStyle(fontSize: 11, color: Colors.teal.shade700),
+                ),
               ],
             ),
           ),
@@ -106,7 +124,10 @@ class CatalogueHeaderAndStats extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
             ),
             icon: const Icon(Icons.cleaning_services_outlined, size: 18),
-            label: const Text('Clean Duplicates', style: TextStyle(fontWeight: FontWeight.w600)),
+            label: const Text(
+              'Clean Duplicates',
+              style: TextStyle(fontWeight: FontWeight.w600),
+            ),
             onPressed: onCleanDuplicates,
           ),
           const SizedBox(width: 8),
@@ -116,7 +137,10 @@ class CatalogueHeaderAndStats extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
             ),
             icon: const Icon(Icons.add, size: 18),
-            label: const Text('Add Product', style: TextStyle(fontWeight: FontWeight.bold)),
+            label: const Text(
+              'Add Product',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             onPressed: onAddProduct,
           ),
         ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../core/engines/engines.dart';
 import '../../models/appointment.dart';
 import '../common/metric_kpi_card.dart';
@@ -82,12 +83,14 @@ class ChamberMetricsGrid extends StatelessWidget {
     if (isDesktop) {
       return Row(
         children: cards
-            .map((card) => Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 6),
-                    child: card,
-                  ),
-                ))
+            .map(
+              (card) => Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 6),
+                  child: card,
+                ),
+              ),
+            )
             .toList(),
       );
     } else {

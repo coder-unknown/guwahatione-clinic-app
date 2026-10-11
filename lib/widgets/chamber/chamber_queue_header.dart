@@ -4,10 +4,7 @@ import 'package:flutter/material.dart';
 class ChamberQueueHeader extends StatelessWidget {
   final int totalBooked;
 
-  const ChamberQueueHeader({
-    super.key,
-    required this.totalBooked,
-  });
+  const ChamberQueueHeader({super.key, required this.totalBooked});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +13,11 @@ class ChamberQueueHeader extends StatelessWidget {
       children: [
         Row(
           children: [
-            const Icon(Icons.people_alt_rounded, size: 20, color: Color(0xFF334155)),
+            const Icon(
+              Icons.people_alt_rounded,
+              size: 20,
+              color: Color(0xFF334155),
+            ),
             const SizedBox(width: 8),
             const Text(
               "Today's Patient Queue",
@@ -85,11 +86,19 @@ class ChamberEmptyQueue extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Icon(Icons.event_available_rounded, size: 54, color: Colors.teal.shade200),
+          Icon(
+            Icons.event_available_rounded,
+            size: 54,
+            color: Colors.teal.shade200,
+          ),
           const SizedBox(height: 16),
           const Text(
             "No appointments scheduled for this date",
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF334155)),
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF334155),
+            ),
           ),
           const SizedBox(height: 6),
           Text(

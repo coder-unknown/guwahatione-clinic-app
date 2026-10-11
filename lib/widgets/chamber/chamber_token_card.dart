@@ -42,7 +42,8 @@ class ChamberTokenCard extends StatelessWidget {
         badgeBg = const Color(0xFFDCFCE7);
         badgeFg = const Color(0xFF15803D);
         statusTitle = "COMPLETED";
-        paymentSubtitle = "Paid: ${AppFormatters.currency(appointment.amountCollected)}";
+        paymentSubtitle =
+            "Paid: ${AppFormatters.currency(appointment.amountCollected)}";
       } else if (appointment.paymentType == PaymentType.freeReview) {
         badgeBg = const Color(0xFFFEF3C7);
         badgeFg = const Color(0xFFB45309);
@@ -69,7 +70,8 @@ class ChamberTokenCard extends StatelessWidget {
 
     return InkWell(
       onTap: canEnterConsultation ? onConsult : null,
-      onLongPress: appointment.status == AppointmentStatus.pending && !isCallingNow
+      onLongPress:
+          appointment.status == AppointmentStatus.pending && !isCallingNow
           ? () => _handleDoctorManualOverride(context)
           : null,
       borderRadius: BorderRadius.circular(12),
@@ -82,9 +84,11 @@ class ChamberTokenCard extends StatelessWidget {
             color: isCallingNow
                 ? Colors.teal.shade600
                 : (appointment.status == AppointmentStatus.pending
-                    ? Colors.blue.shade200
-                    : const Color(0xFFE2E8F0)),
-            width: isCallingNow ? 2.5 : (appointment.status == AppointmentStatus.pending ? 1.5 : 1),
+                      ? Colors.blue.shade200
+                      : const Color(0xFFE2E8F0)),
+            width: isCallingNow
+                ? 2.5
+                : (appointment.status == AppointmentStatus.pending ? 1.5 : 1),
           ),
           boxShadow: [
             BoxShadow(
@@ -137,14 +141,19 @@ class ChamberTokenCard extends StatelessWidget {
 
             // History Quick-Access Button
             IconButton(
-              icon: const Icon(Icons.history_rounded, size: 20, color: Color(0xFF64748B)),
+              icon: const Icon(
+                Icons.history_rounded,
+                size: 20,
+                color: Color(0xFF64748B),
+              ),
               tooltip: 'View Longitudinal History',
               visualDensity: VisualDensity.compact,
-              onPressed: onViewHistory ??
+              onPressed:
+                  onViewHistory ??
                   () => EncounterDialogs.showLongitudinalHistory(
-                        context,
-                        patientPhone: appointment.patientPhone,
-                      ),
+                    context,
+                    patientPhone: appointment.patientPhone,
+                  ),
             ),
             const SizedBox(width: 8),
 
@@ -153,7 +162,10 @@ class ChamberTokenCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 4,
+                  ),
                   decoration: BoxDecoration(
                     color: badgeBg,
                     borderRadius: BorderRadius.circular(6),
@@ -174,7 +186,9 @@ class ChamberTokenCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
-                    color: appointment.amountCollected > 0 ? const Color(0xFF15803D) : Colors.grey.shade600,
+                    color: appointment.amountCollected > 0
+                        ? const Color(0xFF15803D)
+                        : Colors.grey.shade600,
                   ),
                 ),
               ],
@@ -189,11 +203,20 @@ class ChamberTokenCard extends StatelessWidget {
                     style: FilledButton.styleFrom(
                       backgroundColor: Colors.teal.shade700,
                       foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 8,
+                      ),
                       visualDensity: VisualDensity.compact,
                     ),
                     icon: const Icon(Icons.login_rounded, size: 16),
-                    label: const Text('Enter Consultation', style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+                    label: const Text(
+                      'Enter Consultation',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     onPressed: onConsult,
                   )
                 else
@@ -201,7 +224,10 @@ class ChamberTokenCard extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 6,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.grey.shade100,
                           borderRadius: BorderRadius.circular(8),
@@ -210,11 +236,19 @@ class ChamberTokenCard extends StatelessWidget {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(Icons.hourglass_top_rounded, size: 13, color: Colors.grey.shade600),
+                            Icon(
+                              Icons.hourglass_top_rounded,
+                              size: 13,
+                              color: Colors.grey.shade600,
+                            ),
                             const SizedBox(width: 4),
                             Text(
                               'Waiting Reception Call',
-                              style: TextStyle(fontSize: 11, color: Colors.grey.shade700, fontWeight: FontWeight.w500),
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: Colors.grey.shade700,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ],
                         ),
@@ -237,7 +271,10 @@ class ChamberTokenCard extends StatelessWidget {
               ] else
                 OutlinedButton.icon(
                   style: OutlinedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 6,
+                    ),
                     visualDensity: VisualDensity.compact,
                   ),
                   icon: const Icon(Icons.description_outlined, size: 14),

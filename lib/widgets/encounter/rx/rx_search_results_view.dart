@@ -50,11 +50,16 @@ class RxSearchResultsView extends StatelessWidget {
                   Expanded(
                     child: Text(
                       'No matching medicine found for "$cleanQuery".',
-                      style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey.shade600,
+                      ),
                     ),
                   ),
                   FilledButton.tonal(
-                    style: FilledButton.styleFrom(visualDensity: VisualDensity.compact),
+                    style: FilledButton.styleFrom(
+                      visualDensity: VisualDensity.compact,
+                    ),
                     onPressed: () => onStageUnlisted(cleanQuery),
                     child: Text('Prescribe Outside: "$cleanQuery"'),
                   ),
@@ -79,14 +84,21 @@ class RxSearchResultsView extends StatelessWidget {
                         Expanded(
                           child: Text(
                             "${group.compositionLabel} [${group.form}]",
-                            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: Color(0xFF0F172A)),
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                              color: Color(0xFF0F172A),
+                            ),
                           ),
                         ),
                         InkWell(
                           onTap: () => onStageGeneric(group),
                           borderRadius: BorderRadius.circular(4),
                           child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 6,
+                              vertical: 2,
+                            ),
                             decoration: BoxDecoration(
                               color: Colors.purple.shade50,
                               borderRadius: BorderRadius.circular(4),
@@ -94,7 +106,11 @@ class RxSearchResultsView extends StatelessWidget {
                             ),
                             child: Text(
                               '+ Prescribe Generic',
-                              style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.purple.shade800),
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.purple.shade800,
+                              ),
                             ),
                           ),
                         ),
@@ -106,10 +122,17 @@ class RxSearchResultsView extends StatelessWidget {
                       runSpacing: 4,
                       children: group.associatedBrands.map((brand) {
                         return ActionChip(
-                          avatar: const Icon(Icons.local_pharmacy_outlined, size: 14, color: Colors.teal),
+                          avatar: const Icon(
+                            Icons.local_pharmacy_outlined,
+                            size: 14,
+                            color: Colors.teal,
+                          ),
                           label: Text(
                             "${brand.productName}${brand.manufacturer != null ? ' (${brand.manufacturer})' : ''}",
-                            style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
+                            style: const TextStyle(
+                              fontSize: 11,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           backgroundColor: Colors.white,
                           side: BorderSide(color: Colors.teal.shade200),
@@ -128,11 +151,19 @@ class RxSearchResultsView extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
                 child: Row(
                   children: [
-                    Icon(Icons.add_circle_outline, size: 16, color: Colors.blue.shade700),
+                    Icon(
+                      Icons.add_circle_outline,
+                      size: 16,
+                      color: Colors.blue.shade700,
+                    ),
                     const SizedBox(width: 6),
                     Text(
                       'Prescribe unlisted outside brand: "$cleanQuery"',
-                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.blue.shade700),
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue.shade700,
+                      ),
                     ),
                   ],
                 ),

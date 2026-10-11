@@ -1,7 +1,7 @@
-export '../core/engines/medicine_engine.dart' show CompositionGroupResult;
-
 import '../core/engines/medicine_engine.dart';
 import '../models/medicine.dart';
+
+export '../core/engines/medicine_engine.dart' show CompositionGroupResult;
 
 /// Adapter wrapper forwarding to the unified [MedicineEngine].
 class MedicineSearchScorer {

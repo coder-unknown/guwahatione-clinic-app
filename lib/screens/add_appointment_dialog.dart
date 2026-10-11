@@ -3,10 +3,10 @@ import 'package:provider/provider.dart';
 
 import '../core/engines/engines.dart';
 import '../models/appointment.dart';
-import '../utils/formatters.dart';
 import '../models/doctor.dart';
 import '../models/patient_review_eligibility.dart';
 import '../providers/clinic_provider.dart';
+import '../utils/formatters.dart';
 import '../widgets/widgets.dart';
 
 /// Modal dialog for receptionist to register patient walk-ins and book appointments.

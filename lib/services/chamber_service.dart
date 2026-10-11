@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../models/appointment.dart';
 import 'firestore_paths.dart';
 
@@ -7,7 +8,7 @@ class ChamberService {
   final FirebaseFirestore _firestore;
 
   ChamberService({FirebaseFirestore? firestore})
-      : _firestore = firestore ?? FirebaseFirestore.instance;
+    : _firestore = firestore ?? FirebaseFirestore.instance;
 
   CollectionReference<Map<String, dynamic>> get _countersRef =>
       _firestore.collection(FirestorePaths.counters);

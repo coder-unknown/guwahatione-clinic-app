@@ -12,7 +12,8 @@ class MedicineCatalogueScreen extends StatefulWidget {
   const MedicineCatalogueScreen({super.key});
 
   @override
-  State<MedicineCatalogueScreen> createState() => _MedicineCatalogueScreenState();
+  State<MedicineCatalogueScreen> createState() =>
+      _MedicineCatalogueScreenState();
 }
 
 class _MedicineCatalogueScreenState extends State<MedicineCatalogueScreen> {
@@ -47,12 +48,14 @@ class _MedicineCatalogueScreenState extends State<MedicineCatalogueScreen> {
     final allMeds = clinic.medicines;
 
     final filtered = allMeds.where((m) {
-      final matchesQuery = query.isEmpty ||
+      final matchesQuery =
+          query.isEmpty ||
           m.productName.toLowerCase().contains(query) ||
           m.composition.toLowerCase().contains(query) ||
           m.strength.toLowerCase().contains(query);
 
-      final matchesForm = _selectedFormFilter == 'All' || m.form == _selectedFormFilter;
+      final matchesForm =
+          _selectedFormFilter == 'All' || m.form == _selectedFormFilter;
 
       return matchesQuery && matchesForm;
     }).toList();
@@ -63,12 +66,18 @@ class _MedicineCatalogueScreenState extends State<MedicineCatalogueScreen> {
       return a.productName.compareTo(b.productName);
     });
 
-    final uniqueCompositions = allMeds.map((m) => m.composition.trim().toLowerCase()).toSet().length;
+    final uniqueCompositions = allMeds
+        .map((m) => m.composition.trim().toLowerCase())
+        .toSet()
+        .length;
 
     return Scaffold(
       backgroundColor: const Color(0xFFF8FAFC),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: isDesktop ? 32 : 16, vertical: 24),
+        padding: EdgeInsets.symmetric(
+          horizontal: isDesktop ? 32 : 16,
+          vertical: 24,
+        ),
         child: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 1100),
@@ -79,8 +88,10 @@ class _MedicineCatalogueScreenState extends State<MedicineCatalogueScreen> {
                 CatalogueHeaderAndStats(
                   totalProducts: allMeds.length,
                   totalMolecules: uniqueCompositions,
-                  onCleanDuplicates: () => _handleDeduplicateCatalogue(context, auth.currentRole),
-                  onAddProduct: () => _openAddMedicineDialog(context, auth.currentRole),
+                  onCleanDuplicates: () =>
+                      _handleDeduplicateCatalogue(context, auth.currentRole),
+                  onAddProduct: () =>
+                      _openAddMedicineDialog(context, auth.currentRole),
                 ),
                 const SizedBox(height: 20),
 
@@ -93,7 +104,8 @@ class _MedicineCatalogueScreenState extends State<MedicineCatalogueScreen> {
                     if (val != null) setState(() => _selectedFormFilter = val);
                   },
                   onSearchChanged: (_) => setState(() {}),
-                  onClearSearch: () => setState(() => _searchController.clear()),
+                  onClearSearch: () =>
+                      setState(() => _searchController.clear()),
                 ),
                 const SizedBox(height: 16),
 
@@ -117,7 +129,11 @@ class _MedicineCatalogueScreenState extends State<MedicineCatalogueScreen> {
                       final item = filtered[index];
                       return CatalogueMedicineCard(
                         item: item,
-                        onDelete: () => _confirmDeleteMedicine(context, item, auth.currentRole),
+                        onDelete: () => _confirmDeleteMedicine(
+                          context,
+                          item,
+                          auth.currentRole,
+                        ),
                       );
                     },
                   ),
@@ -136,7 +152,11 @@ class _MedicineCatalogueScreenState extends State<MedicineCatalogueScreen> {
     );
   }
 
-  void _confirmDeleteMedicine(BuildContext context, Medicine item, UserRole? currentRole) {
+  void _confirmDeleteMedicine(
+    BuildContext context,
+    Medicine item,
+    UserRole? currentRole,
+  ) {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -145,20 +165,26 @@ class _MedicineCatalogueScreenState extends State<MedicineCatalogueScreen> {
           'Are you sure you want to remove "${item.displayName}" from the master catalogue?\n(Past consultations referencing this drug will remain unaffected).',
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Cancel')),
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('Cancel'),
+          ),
           FilledButton(
             style: FilledButton.styleFrom(backgroundColor: Colors.redAccent),
             onPressed: () async {
               Navigator.pop(ctx);
               try {
-                await Provider.of<ClinicProvider>(context, listen: false).deleteMedicine(
-                  item.id,
-                  requestingRole: currentRole,
-                );
+                await Provider.of<ClinicProvider>(
+                  context,
+                  listen: false,
+                ).deleteMedicine(item.id, requestingRole: currentRole);
               } catch (e) {
                 if (context.mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("Error: $e"), backgroundColor: Colors.red),
+                    SnackBar(
+                      content: Text("Error: $e"),
+                      backgroundColor: Colors.red,
+                    ),
                   );
                 }
               }
@@ -170,10 +196,15 @@ class _MedicineCatalogueScreenState extends State<MedicineCatalogueScreen> {
     );
   }
 
-  void _handleDeduplicateCatalogue(BuildContext context, UserRole? currentRole) async {
+  void _handleDeduplicateCatalogue(
+    BuildContext context,
+    UserRole? currentRole,
+  ) async {
     final clinic = Provider.of<ClinicProvider>(context, listen: false);
     try {
-      final purgedCount = await clinic.deduplicateMedicines(requestingRole: currentRole);
+      final purgedCount = await clinic.deduplicateMedicines(
+        requestingRole: currentRole,
+      );
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -189,7 +220,10 @@ class _MedicineCatalogueScreenState extends State<MedicineCatalogueScreen> {
     } catch (e) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error deduplicating catalogue: $e'), backgroundColor: Colors.red),
+          SnackBar(
+            content: Text('Error deduplicating catalogue: $e'),
+            backgroundColor: Colors.red,
+          ),
         );
       }
     }

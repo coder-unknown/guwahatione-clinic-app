@@ -70,7 +70,9 @@ class CatalogueSearchToolbar extends StatelessWidget {
                 borderSide: const BorderSide(color: Color(0xFFE2E8F0)),
               ),
             ),
-            items: formOptions.map((f) => DropdownMenuItem(value: f, child: Text(f))).toList(),
+            items: formOptions
+                .map((f) => DropdownMenuItem(value: f, child: Text(f)))
+                .toList(),
             onChanged: onFormFilterChanged,
           ),
         ),

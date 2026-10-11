@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'diagnostic_investigation.dart';
 import 'prescription_item.dart';
 import 'vitals.dart';
@@ -60,18 +61,19 @@ class Consultation {
       prescriptionItems.where((p) => p.isActive).toList();
 
   /// Medications newly initiated during this consultation
-  List<PrescriptionItem> get startedPrescriptions =>
-      prescriptionItems.where((p) => p.action == MedicationAction.start).toList();
+  List<PrescriptionItem> get startedPrescriptions => prescriptionItems
+      .where((p) => p.action == MedicationAction.start)
+      .toList();
 
   /// Past ongoing medications that were reconciled and continued
-  List<PrescriptionItem> get continuedPrescriptions =>
-      prescriptionItems
-          .where((p) => p.action == MedicationAction.continueAction)
-          .toList();
+  List<PrescriptionItem> get continuedPrescriptions => prescriptionItems
+      .where((p) => p.action == MedicationAction.continueAction)
+      .toList();
 
   /// Medications discontinued during this consultation
-  List<PrescriptionItem> get stoppedPrescriptions =>
-      prescriptionItems.where((p) => p.action == MedicationAction.stop).toList();
+  List<PrescriptionItem> get stoppedPrescriptions => prescriptionItems
+      .where((p) => p.action == MedicationAction.stop)
+      .toList();
 
   Map<String, dynamic> toJson() {
     return {
@@ -88,10 +90,10 @@ class Consultation {
       'chiefComplaints': chiefComplaints,
       'clinicalExamination': clinicalExamination,
       'provisionalDiagnosis': provisionalDiagnosis,
-      'reviewedInvestigations':
-          reviewedInvestigations.map((r) => r.toJson()).toList(),
-      'prescriptionItems':
-          prescriptionItems.map((p) => p.toJson()).toList(),
+      'reviewedInvestigations': reviewedInvestigations
+          .map((r) => r.toJson())
+          .toList(),
+      'prescriptionItems': prescriptionItems.map((p) => p.toJson()).toList(),
       'orderedTests': orderedTests.map((o) => o.toJson()).toList(),
       'adviceNotes': adviceNotes,
       'nextFollowUpDate': nextFollowUpDate != null
@@ -136,28 +138,41 @@ class Consultation {
       vitals: json['vitals'] != null
           ? Vitals.fromJson(Map<String, dynamic>.from(json['vitals'] as Map))
           : null,
-      chiefComplaints: (json['chiefComplaints'] as List<dynamic>?)
+      chiefComplaints:
+          (json['chiefComplaints'] as List<dynamic>?)
               ?.map((e) => e.toString())
               .toList() ??
           const [],
       clinicalExamination: json['clinicalExamination'] as String?,
-      provisionalDiagnosis: (json['provisionalDiagnosis'] as List<dynamic>?)
+      provisionalDiagnosis:
+          (json['provisionalDiagnosis'] as List<dynamic>?)
               ?.map((e) => e.toString())
               .toList() ??
           const [],
-      reviewedInvestigations: (json['reviewedInvestigations'] as List<dynamic>?)
-              ?.map((e) => DiagnosticInvestigationReview.fromJson(
-                  Map<String, dynamic>.from(e as Map)))
+      reviewedInvestigations:
+          (json['reviewedInvestigations'] as List<dynamic>?)
+              ?.map(
+                (e) => DiagnosticInvestigationReview.fromJson(
+                  Map<String, dynamic>.from(e as Map),
+                ),
+              )
               .toList() ??
           const [],
-      prescriptionItems: (json['prescriptionItems'] as List<dynamic>?)
-              ?.map((e) => PrescriptionItem.fromJson(
-                  Map<String, dynamic>.from(e as Map)))
+      prescriptionItems:
+          (json['prescriptionItems'] as List<dynamic>?)
+              ?.map(
+                (e) => PrescriptionItem.fromJson(
+                  Map<String, dynamic>.from(e as Map),
+                ),
+              )
               .toList() ??
           const [],
-      orderedTests: (json['orderedTests'] as List<dynamic>?)
-              ?.map((e) =>
-                  OrderedTest.fromJson(Map<String, dynamic>.from(e as Map)))
+      orderedTests:
+          (json['orderedTests'] as List<dynamic>?)
+              ?.map(
+                (e) =>
+                    OrderedTest.fromJson(Map<String, dynamic>.from(e as Map)),
+              )
               .toList() ??
           const [],
       adviceNotes: json['adviceNotes'] as String?,

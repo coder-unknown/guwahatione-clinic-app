@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+
 import '../../models/diagnostic_investigation.dart';
 import '../../utils/formatters.dart';
 import '../common/section_card.dart';
-
 import 'encounter_form_state.dart';
 
 /// Step 5: Advice, Diagnostic Orders & Follow-up Visit Scheduling
@@ -34,26 +34,27 @@ class AdviceAndOrdersSection extends StatelessWidget {
     required EncounterFormState form,
     required VoidCallback onUpdate,
     required this.onPickCustomDate,
-  })  : orderedTestInputController = form.orderedTestInputController,
-        orderedTests = form.orderedTests,
-        onAddOrderedTest = (() {
-          form.addOrderedTest();
-          onUpdate();
-        }),
-        onRemoveOrderedTest = ((t) {
-          form.removeOrderedTest(t);
-          onUpdate();
-        }),
-        adviceController = form.adviceController,
-        nextFollowUpDate = form.nextFollowUpDate,
-        onFollowUpDateChanged = ((d) {
-          form.nextFollowUpDate = d;
-          onUpdate();
-        });
+  }) : orderedTestInputController = form.orderedTestInputController,
+       orderedTests = form.orderedTests,
+       onAddOrderedTest = (() {
+         form.addOrderedTest();
+         onUpdate();
+       }),
+       onRemoveOrderedTest = ((t) {
+         form.removeOrderedTest(t);
+         onUpdate();
+       }),
+       adviceController = form.adviceController,
+       nextFollowUpDate = form.nextFollowUpDate,
+       onFollowUpDateChanged = ((d) {
+         form.nextFollowUpDate = d;
+         onUpdate();
+       });
 
   Widget _buildIntervalChip(String label, int days) {
     final target = DateTime.now().add(Duration(days: days));
-    final isSelected = nextFollowUpDate != null &&
+    final isSelected =
+        nextFollowUpDate != null &&
         nextFollowUpDate!.year == target.year &&
         nextFollowUpDate!.month == target.month &&
         nextFollowUpDate!.day == target.day;
@@ -78,7 +79,11 @@ class AdviceAndOrdersSection extends StatelessWidget {
           // Order New Diagnostic Tests
           const Text(
             'Order New Investigations / Lab Tests',
-            style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Color(0xFF334155)),
+            style: TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              color: Color(0xFF334155),
+            ),
           ),
           const SizedBox(height: 6),
           Row(
@@ -87,9 +92,13 @@ class AdviceAndOrdersSection extends StatelessWidget {
                 child: TextField(
                   controller: orderedTestInputController,
                   decoration: const InputDecoration(
-                    hintText: 'e.g., Fasting Blood Sugar, Serum Creatinine, ECG...',
+                    hintText:
+                        'e.g., Fasting Blood Sugar, Serum Creatinine, ECG...',
                     isDense: true,
-                    contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 10,
+                    ),
                     border: OutlineInputBorder(),
                   ),
                   onSubmitted: (_) => onAddOrderedTest(),
@@ -123,7 +132,11 @@ class AdviceAndOrdersSection extends StatelessWidget {
           // Lifestyle & Dietary Advice
           const Text(
             'Advice & Instructions',
-            style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Color(0xFF334155)),
+            style: TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              color: Color(0xFF334155),
+            ),
           ),
           const SizedBox(height: 6),
           TextField(
@@ -140,7 +153,11 @@ class AdviceAndOrdersSection extends StatelessWidget {
           // Next Follow-up Date with Quick Interval Chips
           const Text(
             'Next Follow-up Visit',
-            style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Color(0xFF334155)),
+            style: TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              color: Color(0xFF334155),
+            ),
           ),
           const SizedBox(height: 8),
           Wrap(
@@ -159,9 +176,14 @@ class AdviceAndOrdersSection extends StatelessWidget {
                   nextFollowUpDate != null
                       ? AppFormatters.date(nextFollowUpDate!)
                       : 'Pick Date',
-                  style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                backgroundColor: nextFollowUpDate != null ? Colors.teal.shade50 : null,
+                backgroundColor: nextFollowUpDate != null
+                    ? Colors.teal.shade50
+                    : null,
                 onPressed: onPickCustomDate,
               ),
               if (nextFollowUpDate != null)

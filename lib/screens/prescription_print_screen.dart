@@ -11,6 +11,7 @@ enum PaperSize {
 
   final String label;
   final double maxWidth;
+
   const PaperSize(this.label, this.maxWidth);
 }
 
@@ -30,7 +31,8 @@ class PrescriptionPrintScreen extends StatefulWidget {
   });
 
   @override
-  State<PrescriptionPrintScreen> createState() => _PrescriptionPrintScreenState();
+  State<PrescriptionPrintScreen> createState() =>
+      _PrescriptionPrintScreenState();
 }
 
 class _PrescriptionPrintScreenState extends State<PrescriptionPrintScreen> {
@@ -52,7 +54,10 @@ class _PrescriptionPrintScreenState extends State<PrescriptionPrintScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             ),
             icon: const Icon(Icons.print_rounded, size: 18),
-            label: const Text('Print Prescription', style: TextStyle(fontWeight: FontWeight.bold)),
+            label: const Text(
+              'Print Prescription',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             onPressed: () => printDocument(),
           ),
           const SizedBox(width: 12),
@@ -75,11 +80,18 @@ class _PrescriptionPrintScreenState extends State<PrescriptionPrintScreen> {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(Icons.description_outlined, size: 18, color: Colors.teal),
+                    const Icon(
+                      Icons.description_outlined,
+                      size: 18,
+                      color: Colors.teal,
+                    ),
                     const SizedBox(width: 8),
                     const Text(
                       'Pre-Printed Letterhead Mode:',
-                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                     const SizedBox(width: 8),
                     Switch(
@@ -92,11 +104,17 @@ class _PrescriptionPrintScreenState extends State<PrescriptionPrintScreen> {
                       },
                     ),
                     Text(
-                      _usePrePrintedLetterhead ? 'ON (Margin reserved)' : 'OFF (Digital header)',
+                      _usePrePrintedLetterhead
+                          ? 'ON (Margin reserved)'
+                          : 'OFF (Digital header)',
                       style: TextStyle(
                         fontSize: 12,
-                        color: _usePrePrintedLetterhead ? Colors.teal.shade800 : Colors.grey.shade600,
-                        fontWeight: _usePrePrintedLetterhead ? FontWeight.bold : FontWeight.normal,
+                        color: _usePrePrintedLetterhead
+                            ? Colors.teal.shade800
+                            : Colors.grey.shade600,
+                        fontWeight: _usePrePrintedLetterhead
+                            ? FontWeight.bold
+                            : FontWeight.normal,
                       ),
                     ),
                   ],
@@ -106,11 +124,25 @@ class _PrescriptionPrintScreenState extends State<PrescriptionPrintScreen> {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Text('Paper Size: ', style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
+                    const Text(
+                      'Paper Size: ',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                     const SizedBox(width: 8),
                     SegmentedButton<PaperSize>(
                       segments: PaperSize.values
-                          .map((p) => ButtonSegment(value: p, label: Text(p.label, style: const TextStyle(fontSize: 12))))
+                          .map(
+                            (p) => ButtonSegment(
+                              value: p,
+                              label: Text(
+                                p.label,
+                                style: const TextStyle(fontSize: 12),
+                              ),
+                            ),
+                          )
                           .toList(),
                       selected: {_paperSize},
                       onSelectionChanged: (set) {
@@ -145,7 +177,10 @@ class _PrescriptionPrintScreenState extends State<PrescriptionPrintScreen> {
                         ),
                       ],
                     ),
-                    padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 28),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 32,
+                      vertical: 28,
+                    ),
                     child: _buildPrintableDocument(),
                   ),
                 ),

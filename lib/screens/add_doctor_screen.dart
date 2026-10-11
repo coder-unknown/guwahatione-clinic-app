@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../providers/clinic_provider.dart';
 
 class AddDoctorScreen extends StatefulWidget {
@@ -139,9 +140,9 @@ class _AddDoctorScreenState extends State<AddDoctorScreen> {
     if (!_formKey.currentState!.validate()) return;
 
     if (_selectedDays.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Select at least one day')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Select at least one day')));
       return;
     }
 
@@ -161,10 +162,8 @@ class _AddDoctorScreenState extends State<AddDoctorScreen> {
       Navigator.pop(context);
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Error: $e')));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Error: $e')));
     }
   }
-
 }

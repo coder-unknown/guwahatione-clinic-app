@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+
 import '../../models/diagnostic_investigation.dart';
 import '../../utils/formatters.dart';
 import '../common/section_card.dart';
-
 import 'encounter_form_state.dart';
 
 /// Step 3: Past Diagnostic Investigations Review
@@ -32,23 +32,25 @@ class DiagnosticReviewSection extends StatelessWidget {
     required EncounterFormState form,
     required VoidCallback onUpdate,
     required this.onAddOutsideLab,
-  })  : reviewedInvestigations = form.reviewedInvestigations,
-        isExpanded = form.isInvestigationsExpanded,
-        onToggleExpand = (() {
-          form.isInvestigationsExpanded = !form.isInvestigationsExpanded;
-          onUpdate();
-        }),
-        onResultChanged = ((index, val) {
-          form.reviewedInvestigations[index] = form.reviewedInvestigations[index].copyWith(resultValue: val);
-        }),
-        onDateChanged = ((index, date) {
-          form.reviewedInvestigations[index] = form.reviewedInvestigations[index].copyWith(performedDate: date);
-          onUpdate();
-        }),
-        onRemoveItem = ((index) {
-          form.reviewedInvestigations.removeAt(index);
-          onUpdate();
-        });
+  }) : reviewedInvestigations = form.reviewedInvestigations,
+       isExpanded = form.isInvestigationsExpanded,
+       onToggleExpand = (() {
+         form.isInvestigationsExpanded = !form.isInvestigationsExpanded;
+         onUpdate();
+       }),
+       onResultChanged = ((index, val) {
+         form.reviewedInvestigations[index] = form.reviewedInvestigations[index]
+             .copyWith(resultValue: val);
+       }),
+       onDateChanged = ((index, date) {
+         form.reviewedInvestigations[index] = form.reviewedInvestigations[index]
+             .copyWith(performedDate: date);
+         onUpdate();
+       }),
+       onRemoveItem = ((index) {
+         form.reviewedInvestigations.removeAt(index);
+         onUpdate();
+       });
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +84,11 @@ class DiagnosticReviewSection extends StatelessWidget {
               count > 0
                   ? '$count investigations tracked. Click expand to enter results.'
                   : 'No pending lab tests from previous visits. (Click + to add outside reports)',
-              style: TextStyle(fontSize: 12, color: Colors.grey.shade600, fontStyle: FontStyle.italic),
+              style: TextStyle(
+                fontSize: 12,
+                color: Colors.grey.shade600,
+                fontStyle: FontStyle.italic,
+              ),
             )
           else ...[
             if (reviewedInvestigations.isEmpty)
@@ -115,7 +121,10 @@ class DiagnosticReviewSection extends StatelessWidget {
                           flex: 3,
                           child: Text(
                             inv.testName,
-                            style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 13,
+                            ),
                           ),
                         ),
                         const SizedBox(width: 8),
@@ -126,7 +135,10 @@ class DiagnosticReviewSection extends StatelessWidget {
                             decoration: const InputDecoration(
                               hintText: 'Result value / findings',
                               isDense: true,
-                              contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                              contentPadding: EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 8,
+                              ),
                               border: OutlineInputBorder(),
                             ),
                             onChanged: (val) => onResultChanged(index, val),
@@ -146,7 +158,10 @@ class DiagnosticReviewSection extends StatelessWidget {
                             }
                           },
                           child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 6,
+                            ),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(6),
@@ -155,11 +170,17 @@ class DiagnosticReviewSection extends StatelessWidget {
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                const Icon(Icons.event_outlined, size: 14, color: Colors.teal),
+                                const Icon(
+                                  Icons.event_outlined,
+                                  size: 14,
+                                  color: Colors.teal,
+                                ),
                                 const SizedBox(width: 4),
                                 Text(
                                   inv.performedDate != null
-                                      ? AppFormatters.compactDate(inv.performedDate!)
+                                      ? AppFormatters.compactDate(
+                                          inv.performedDate!,
+                                        )
                                       : 'Date Done',
                                   style: const TextStyle(fontSize: 11),
                                 ),
@@ -168,7 +189,11 @@ class DiagnosticReviewSection extends StatelessWidget {
                           ),
                         ),
                         IconButton(
-                          icon: const Icon(Icons.delete_outline, size: 18, color: Colors.grey),
+                          icon: const Icon(
+                            Icons.delete_outline,
+                            size: 18,
+                            color: Colors.grey,
+                          ),
                           onPressed: () => onRemoveItem(index),
                         ),
                       ],

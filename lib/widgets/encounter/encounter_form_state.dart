@@ -18,8 +18,10 @@ class EncounterFormState {
   final TextEditingController tempController = TextEditingController();
   final TextEditingController weightController = TextEditingController();
   final TextEditingController spo2Controller = TextEditingController();
-  final TextEditingController complaintInputController = TextEditingController();
-  final TextEditingController diagnosisInputController = TextEditingController();
+  final TextEditingController complaintInputController =
+      TextEditingController();
+  final TextEditingController diagnosisInputController =
+      TextEditingController();
   final TextEditingController examController = TextEditingController();
 
   final List<String> chiefComplaints = [];
@@ -39,9 +41,14 @@ class EncounterFormState {
   String? stagedUnlistedName;
   String? stagedComposition;
 
-  final TextEditingController stagedDosageController = TextEditingController(text: '1 Tablet');
-  final TextEditingController stagedDurationController = TextEditingController(text: '30');
-  final TextEditingController stagedInstructionsController = TextEditingController();
+  final TextEditingController stagedDosageController = TextEditingController(
+    text: '1 Tablet',
+  );
+  final TextEditingController stagedDurationController = TextEditingController(
+    text: '30',
+  );
+  final TextEditingController stagedInstructionsController =
+      TextEditingController();
   String stagedFrequency = '1-0-0 (OD)';
   String stagedTiming = 'After Food';
   bool stagedIsChronic = false;
@@ -51,7 +58,8 @@ class EncounterFormState {
 
   // Step 5: Advice & Follow-up
   final List<OrderedTest> orderedTests = [];
-  final TextEditingController orderedTestInputController = TextEditingController();
+  final TextEditingController orderedTestInputController =
+      TextEditingController();
   final TextEditingController adviceController = TextEditingController();
   DateTime? nextFollowUpDate;
 
@@ -133,12 +141,17 @@ class EncounterFormState {
     stagedFrequency = defaults.frequency;
     stagedTiming = defaults.timing;
     stagedIsChronic = defaults.durationDays == null;
-    stagedDurationController.text = defaults.durationDays != null ? '${defaults.durationDays}' : '30';
+    stagedDurationController.text = defaults.durationDays != null
+        ? '${defaults.durationDays}'
+        : '30';
     stagedInstructionsController.text = defaults.instructions ?? '';
     isSearchActive = false;
   }
 
-  void stageGeneric(CompositionGroupResult group, String Function() uuidGenerator) {
+  void stageGeneric(
+    CompositionGroupResult group,
+    String Function() uuidGenerator,
+  ) {
     final dummy = Medicine(
       id: 'gen_${uuidGenerator()}',
       productName: group.compositionLabel,
@@ -155,7 +168,9 @@ class EncounterFormState {
     stagedFrequency = defaults.frequency;
     stagedTiming = defaults.timing;
     stagedIsChronic = defaults.durationDays == null;
-    stagedDurationController.text = defaults.durationDays != null ? '${defaults.durationDays}' : '30';
+    stagedDurationController.text = defaults.durationDays != null
+        ? '${defaults.durationDays}'
+        : '30';
     stagedInstructionsController.text = defaults.instructions ?? '';
     isSearchActive = false;
   }
@@ -248,9 +263,9 @@ class EncounterFormState {
   }
 
   List<PrescriptionItem> get allPrescriptionItems => [
-        ...reconciliationItems,
-        ...newPrescriptions,
-      ];
+    ...reconciliationItems,
+    ...newPrescriptions,
+  ];
 
   Consultation buildConsultation({
     required String id,
@@ -273,12 +288,16 @@ class EncounterFormState {
       createdAt: DateTime.now(),
       vitals: vitals.hasAny ? vitals : null,
       chiefComplaints: List.from(chiefComplaints),
-      clinicalExamination: examController.text.trim().isNotEmpty ? examController.text.trim() : null,
+      clinicalExamination: examController.text.trim().isNotEmpty
+          ? examController.text.trim()
+          : null,
       provisionalDiagnosis: List.from(provisionalDiagnoses),
       reviewedInvestigations: List.from(reviewedInvestigations),
       prescriptionItems: allPrescriptionItems,
       orderedTests: List.from(orderedTests),
-      adviceNotes: adviceController.text.trim().isNotEmpty ? adviceController.text.trim() : null,
+      adviceNotes: adviceController.text.trim().isNotEmpty
+          ? adviceController.text.trim()
+          : null,
       nextFollowUpDate: nextFollowUpDate,
     );
   }
@@ -296,7 +315,9 @@ class EncounterFormState {
       patientAge = patient.age;
     }
 
-    final pastConsultations = await clinic.getPatientConsultations(patientPhone);
+    final pastConsultations = await clinic.getPatientConsultations(
+      patientPhone,
+    );
     if (pastConsultations.isNotEmpty) {
       final latest = pastConsultations.first;
       for (final item in latest.activePrescriptions) {

@@ -13,9 +13,13 @@ abstract class FirestorePaths {
 
   // Document Path Builders
   static String patientDoc(String phone) => phone;
+
   static String appointmentDoc(String id) => id;
+
   static String consultationDoc(String id) => id;
+
   static String medicineDoc(String id) => id;
+
   static String doctorDoc(String id) => id;
 
   /// Formats date into standard YYYY-MM-DD key.

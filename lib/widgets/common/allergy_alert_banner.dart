@@ -32,7 +32,11 @@ class AllergyAlertBanner extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.check_circle_outline, size: 14, color: Colors.teal.shade700),
+            Icon(
+              Icons.check_circle_outline,
+              size: 14,
+              color: Colors.teal.shade700,
+            ),
             const SizedBox(width: 6),
             const Text(
               'No Known Drug Allergies (NKDA)',
@@ -82,7 +86,10 @@ class AllergyAlertBanner extends StatelessWidget {
                   runSpacing: 4,
                   children: allergies.map((allergy) {
                     return Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 2,
+                      ),
                       decoration: BoxDecoration(
                         color: const Color(0xFFFEE2E2),
                         borderRadius: BorderRadius.circular(4),

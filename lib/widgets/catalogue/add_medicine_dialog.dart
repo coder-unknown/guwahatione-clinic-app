@@ -8,10 +8,7 @@ import '../../providers/clinic_provider.dart';
 class AddMedicineDialog extends StatefulWidget {
   final UserRole? currentRole;
 
-  const AddMedicineDialog({
-    super.key,
-    required this.currentRole,
-  });
+  const AddMedicineDialog({super.key, required this.currentRole});
 
   @override
   State<AddMedicineDialog> createState() => _AddMedicineDialogState();
@@ -54,17 +51,22 @@ class _AddMedicineDialogState extends State<AddMedicineDialog> {
                     hintText: 'e.g., Dolo 650, Augmentin 625 Duo, Azithral 500',
                     border: OutlineInputBorder(),
                   ),
-                  validator: (val) => val == null || val.trim().isEmpty ? 'Product name is required' : null,
+                  validator: (val) => val == null || val.trim().isEmpty
+                      ? 'Product name is required'
+                      : null,
                 ),
                 const SizedBox(height: 12),
                 TextFormField(
                   controller: _compCtrl,
                   decoration: const InputDecoration(
                     labelText: 'Chemical Composition (Active Molecule)',
-                    hintText: 'e.g., Paracetamol, Amoxicillin + Clavulanic Acid',
+                    hintText:
+                        'e.g., Paracetamol, Amoxicillin + Clavulanic Acid',
                     border: OutlineInputBorder(),
                   ),
-                  validator: (val) => val == null || val.trim().isEmpty ? 'Composition is required' : null,
+                  validator: (val) => val == null || val.trim().isEmpty
+                      ? 'Composition is required'
+                      : null,
                 ),
                 const SizedBox(height: 12),
                 Row(
@@ -77,7 +79,9 @@ class _AddMedicineDialogState extends State<AddMedicineDialog> {
                           hintText: 'e.g., 650 mg, 500 mg / 5 ml',
                           border: OutlineInputBorder(),
                         ),
-                        validator: (val) => val == null || val.trim().isEmpty ? 'Strength is required' : null,
+                        validator: (val) => val == null || val.trim().isEmpty
+                            ? 'Strength is required'
+                            : null,
                       ),
                     ),
                     const SizedBox(width: 12),
@@ -88,16 +92,24 @@ class _AddMedicineDialogState extends State<AddMedicineDialog> {
                           labelText: 'Form',
                           border: OutlineInputBorder(),
                         ),
-                        items: const [
-                          'Tablet',
-                          'Capsule',
-                          'Syrup',
-                          'Injection',
-                          'Drops',
-                          'Ointment',
-                          'Inhaler',
-                          'Suspension',
-                        ].map((f) => DropdownMenuItem(value: f, child: Text(f))).toList(),
+                        items:
+                            const [
+                                  'Tablet',
+                                  'Capsule',
+                                  'Syrup',
+                                  'Injection',
+                                  'Drops',
+                                  'Ointment',
+                                  'Inhaler',
+                                  'Suspension',
+                                ]
+                                .map(
+                                  (f) => DropdownMenuItem(
+                                    value: f,
+                                    child: Text(f),
+                                  ),
+                                )
+                                .toList(),
                         onChanged: (val) {
                           if (val != null) setState(() => _form = val);
                         },
@@ -120,7 +132,10 @@ class _AddMedicineDialogState extends State<AddMedicineDialog> {
         ),
       ),
       actions: [
-        TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('Cancel'),
+        ),
         FilledButton(
           onPressed: _saveMedicine,
           child: const Text('Save to Catalogue'),
@@ -137,7 +152,9 @@ class _AddMedicineDialogState extends State<AddMedicineDialog> {
         composition: _compCtrl.text.trim(),
         strength: _strengthCtrl.text.trim(),
         form: _form,
-        manufacturer: _mfgCtrl.text.trim().isNotEmpty ? _mfgCtrl.text.trim() : null,
+        manufacturer: _mfgCtrl.text.trim().isNotEmpty
+            ? _mfgCtrl.text.trim()
+            : null,
         requestingRole: widget.currentRole,
       );
       if (mounted) Navigator.pop(context);
